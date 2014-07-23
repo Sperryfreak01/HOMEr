@@ -7,8 +7,10 @@ import MySQLdb
 import collections
 import json
 import HOMEr_history
+import urllib
 
 con = MySQLdb.connect('192.168.2.1', 'HOMEr', 'HOMEr', 'HOMEr');
+impapi = "https://agent.electricimp.com/"
 
 ########################################################################
 
@@ -29,7 +31,8 @@ def get_devices():
             d['id'] = row["id"]
             objects_list.append(d)
             j = json.dumps(objects_list)
-    return(j)
+    return (j)
+
 
 @delete('/removedevice')  # returns all devices registered in teh system
 def remove_device():
@@ -94,5 +97,34 @@ def add_device():
             j = json.dumps(objects_list)
             print(j)
         return(j)
+
+@post('/setbrightness')  # used to add a new device to the system
+def set_brightness():
+    cur = con.cursor(MySQLdb.cursors.DictCursor)
+
+    device_id = request.forms.get('id')
+    brightness = request.forms.get('brightness')
+
+    if re.match(r"[a-zA-Z0-9]{0,128}$", device_id) is None: # check that id only has letters and numbers
+        abort(400, "Doh! That request was no bueno.  The id is invalid." + device_id)
+    else:
+        cur.execute("SELECT * from Devices where id = %s", device_id)
+        row = cur.fetchall()
+        if not row:
+            abort(400, "Doh! Device ID was not found")
+        else:
+            for col in row:
+                device_type = col["type"]
+                device_name = col["name"]
+                if device_type == "imp":
+                    url = impapi
+                elif device_typer == "spark":
+                    url = "something!!!!"
+        urllib.urlopen(impapi + device_id + "?setbrightness= " + brightness)
+        history_event = "set brightness to: " + brightness
+        HOMEr_history.insert_history(con,device_name, device_id, history_event)
+
+        return("OK")
+
 
 run(reloader=True, host='0.0.0.0', port=8080, debug=True)
