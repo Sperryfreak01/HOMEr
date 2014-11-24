@@ -4,15 +4,31 @@ import urllib
 import urllib2
 import urlparse
 import json
+from phue import Bridge
+
 
 IMP_API = "https://agent.electricimp.com/"
 SPARK_API = "https://api.spark.io/v1/"
 spark_token = 'e8a5241dee80316554e4f72c516ecf3ff26e15f6'
 
+
+b = Bridge()
+
+# If the app is not registered and the button is not pressed, press the button and call connect() (this only needs to be run a single time)
+b.connect()
+
+# Get the bridge state (This returns the full dictionary that you can explore)
+b.get_api()
+
+lights = b.lights
+
 def sendDeviceBrightness(device_id, device_type, brightness):
     if device_type == "imp":
         url = IMP_API
         urllib.urlopen(IMP_API + device_id + "?setbrightness= " + brightness)
+    elif device_type == "hue":
+        b.set_light(device_id, 'bri', brightness)
+
     elif device_type == "spark":
         # url = SPARK_API
         #urllib.urlopen(SPARK_API + device_id + "/setbrightness " + brightness)
@@ -89,3 +105,4 @@ def sendSparkCommand(url, payload):
 
     except urllib2.HTTPError as e:
         raise SparkError(e)
+
