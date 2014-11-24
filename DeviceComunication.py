@@ -3,6 +3,7 @@ __author__ = 'matt'
 import urllib
 import urllib2
 import urlparse
+import json
 
 IMP_API = "https://agent.electricimp.com/"
 SPARK_API = "https://api.spark.io/v1/"
@@ -34,24 +35,57 @@ def sendDeviceBrightness(device_id, device_type, brightness):
             #raise SparkError(spark_response)
             print "error"
 
+def hex2rgb(hex):
+    if hex is not None:
+        red = str(int(hex[0:2],16))    # grabs the chars that are for each color and splits them
+        red = red.zfill(3)             # converts from hex to int and then to a string, then
+        green = str(int(hex[2:4],16))  # fills them to 3 digits always. rinse and repeat for other
+        green = green.zfill(3)         # colors.  String all three together comma separated list.
+        blue = str(int(hex[4:6],16))
+        blue = blue.zfill(3)
+        rgb = ','
+        rgb = rgb.join((red, green, blue))
+        return rgb
+    else:
+        rgb = "000,000,000"
+        return rgb
+
+
 class SparkError(Exception): pass
 
-def sparkAlarm(device_ID, color, spark_token):
+
+def sendDeviceColor(device_id, color_hex, lighting_mode):
+    color_rgb = hex2rgb(color_hex)
+
     payload = {
         'access_token' : spark_token,
-        'args' : color
-    }
-    device_path = "devices/" + device_ID + "/alarm"
-    url = urlparse.urljoin(SPARK_API, device_path)
+        'args' : color_rgb
+        }
+    print payload
+    if lighting_mode == '0':  # fade mode
+        device_path = "devices/" + device_id + "/fade"
+        url = urlparse.urljoin(SPARK_API, device_path)
+        sendSparkCommand(url, payload)
+    elif lighting_mode == '1':  # Solid color mode
+        device_path = "devices/" + device_id + "/hold"
+        url = urlparse.urljoin(SPARK_API, device_path)
+        sendSparkCommand(url, payload)
+    elif lighting_mode == '2':    # Alarm Mode
+        device_path = "devices/" + device_id + "/alarm"
+        url = urlparse.urljoin(SPARK_API, device_path)  # build the URL to communicate with the Spark
+        sendSparkCommand(url, payload)
+    else:
+        print 'no match'
+
+def sendSparkCommand(url, payload):
     try:
-        data = urllib.urlencode(payload)
-        req = urllib2.Request(url, data)
+        data = urllib.urlencode(payload)  # build the POST command to send to the Spark
+        req = urllib2.Request(url, data)  # send request to Spark
         response = urllib2.urlopen(req)
         spark_response = response.read()
-    except urllib2.HTTPError, httperror:
-        raise SparkError(httperror)
+        d = json.loads(spark_response)
+        if d['return_value'] is not 1:    # Spark returns 1 for success and 0 for failure
+            raise SparkError(spark_response)
 
-    d = json.loads(spark_response)
-    if d['return_value'] is not 1:
-        #raise SparkError(spark_response)
-        print "error"
+    except urllib2.HTTPError as e:
+        raise SparkError(e)
