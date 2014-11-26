@@ -115,9 +115,10 @@ def addDevice():
     device_function = request.forms.get('function')
     device_id = request.forms.get('id')
 
-    if re.match(r"\w+\s\w+", device_name) is not None: # check that the device name is alphanumeric
+    if device_name is not None: # check that the device name is present
         if re.match(r"\w+$", device_type) is not None: # check that device type is alphanumeric
-            if re.match(r"[a-zA-Z0-9]{0,128}$", device_id) is not None: # check that id only has letters and numbers
+            #if re.match(r"[a-zA-Z0-9]{0,128}$", device_id) is not None: # check that id only has letters and numbers
+            if HomerHelper.deviceIdCheck(device_id) # check that id only has letters and numbers
                 try:
                     sql_insert = "INSERT INTO `Devices`(`name`, `type`, `function`, `id`) VALUES (%s,%s,%s,%s)"
                     db.query(sql_insert, (device_name, device_type, device_function, device_id))

@@ -12,7 +12,7 @@ SPARK_API = "https://api.spark.io/v1/"
 spark_token = 'e8a5241dee80316554e4f72c516ecf3ff26e15f6'
 
 
-b = Bridge()
+b = Bridge(Philips-hue.mattlovett.com)
 
 # If the app is not registered and the button is not pressed, press the button and call connect() (this only needs to be run a single time)
 b.connect()

@@ -90,7 +90,7 @@ def getDeviceFunction(con, id):
     else:
         return device_function
 
-def deviceIdCheck(con, id):
+def deviceIdCheck(id):
     if re.match(r"[a-zA-Z0-9]{0,128}$", id) is None: # check that id only has letters and numbers
         return False
     else:
