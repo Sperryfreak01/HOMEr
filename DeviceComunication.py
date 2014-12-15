@@ -5,17 +5,17 @@ import urllib2
 import urlparse
 import json
 from phue import Bridge
-
+from HomerHelper import getDeviceName
 
 IMP_API = "https://agent.electricimp.com/"
 SPARK_API = "https://api.spark.io/v1/"
 spark_token = 'e8a5241dee80316554e4f72c516ecf3ff26e15f6'
 
 
-b = Bridge(Philips-hue.mattlovett.com)
+b = Bridge("192.168.2.132",config_file_path="./.python_hue")
 
 # If the app is not registered and the button is not pressed, press the button and call connect() (this only needs to be run a single time)
-b.connect()
+#b.connect()
 
 # Get the bridge state (This returns the full dictionary that you can explore)
 b.get_api()
@@ -27,7 +27,12 @@ def sendDeviceBrightness(device_id, device_type, brightness):
         url = IMP_API
         urllib.urlopen(IMP_API + device_id + "?setbrightness= " + brightness)
     elif device_type == "hue":
-        b.set_light(device_id, 'bri', brightness)
+        name = getDeviceName(None, device_id)
+	if brightness == "0":
+	  b.set_light(name,'on', False)
+	else:
+	  b.set_light(name,'on', True)
+          b.set_light(name, 'bri',int(brightness))
 
     elif device_type == "spark":
         # url = SPARK_API
