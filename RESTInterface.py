@@ -11,7 +11,9 @@ import threading
 import HomerHelper
 import Notifications
 import DeviceComunication
+import logging
 
+logger = logging.getLogger(__name__)
 
 con = MySQLdb.connect('192.168.2.1', 'HOMEr', 'HOMEr', 'HOMEr')
 
@@ -518,7 +520,10 @@ def viewBrightness():
     brightness_location = HomerHelper.lookupDeviceAttribute(con, 'lamp', 'Brightness')
     html = []  # parser for the information returned
     for col in row:
-        lampdevices = (col['name'], str((int(col[brightness_location])*100 )/255),col['id'])
+        devicename = col['name']
+        devicename = devicename.replace(" ", "_")
+        lampdevices = (col['name'], devicename, str((int(col[brightness_location])*100 )/255),col['id'])
+        print "viewbrightness"
         print lampdevices
         html.append(lampdevices)
     return template('brightness', devices=html)

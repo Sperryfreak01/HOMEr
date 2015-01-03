@@ -4,7 +4,9 @@ __author__ = 'matt'
 
 import MySQLdb
 import re
+import logging
 
+logger = logging.getLogger(__name__)
 
 class DB:
   conn = None
@@ -33,10 +35,10 @@ def insert_history(con, device_name,device_id,event):
        # print device_name
         sql_insert = "INSERT INTO `History`(`name`, `id`, `event`) VALUES (%s,%s,%s)"
         cur = db.query(sql_insert, (device_name, device_id, event))
-        #logging.warn("%d", affected_count)
-        #logging.info("inserted values %d, %s", id, filename)
+        #logger.warn("%d", affected_count)
+        #logger.info("inserted values %d, %s", id, filename)
     except MySQLdb.IntegrityError:
-        #logging.warn("failed to insert values %d, %s", id, filename)
+        #logger.warn("failed to insert values %d, %s", id, filename)
         #abort(400, "Doh! History was forgotten")
         print ("log entry exception")
     cur = db.query("SELECT * from Devices where name = '" + device_name + "'", None)
@@ -118,7 +120,7 @@ def idCheck(id_type, id):
     else:
         sql_query = ("SELECT `id` FROM %s " % id_type)
         sql_query +=("WHERE id = %s")
-        #print (sql_query, id)
+        logger.debug(sql_query, id)
         cur = db.query(sql_query, id)
         row = cur.fetchall()
         if row:
@@ -145,11 +147,26 @@ def lookupDeviceAttribute(con, function, attr_name):
             for x in xrange(1, 10):
                 col_name = "value%d" % x  # iterate through attribute field looking for the column we need
                 if row[col_name] == attr_name:
-                    print "col name: %s  row[]: %s  attr name: %s " % (col_name, row[col_name], attr_name)
+                    logger.debug("col name: %s  row[]: %s  attr name: %s " % (col_name, row[col_name], attr_name))
                     return col_name
             else:
                 return None
     except MySQLdb.IntegrityError:
             return None
+
+def hex2rgb(hex):
+    if hex is not None:
+        red = str(int(hex[0:2],16))    # grabs the chars that are for each color and splits them
+        red = red.zfill(3)             # converts from hex to int and then to a string, then
+        green = str(int(hex[2:4],16))  # fills them to 3 digits always. rinse and repeat for other
+        green = green.zfill(3)         # colors.  String all three together comma separated list.
+        blue = str(int(hex[4:6],16))
+        blue = blue.zfill(3)
+        rgb = ','
+        rgb = rgb.join((red, green, blue))
+        return rgb
+    else:
+        rgb = "000,000,000"
+        return rgb
 
 
