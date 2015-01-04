@@ -31,48 +31,8 @@
     </head>
 
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">HOMEr</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="https://mattlovett.com">Home</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Apps <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="https://mattlovett.com/tv">TV</a></li>
-                                <li><a href="https://mattlovett.com/movies">Movies</a></li>
-                                <li><a href="https://mattlovett.com/downloads">Downloads</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rooms <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Living Room</a></li>
-                                <li><a href="#">Kitchen</a></li>
-                                <li><a href="#">Bedroom</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Devices <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/homer/viewbrightness">Lamps</a></li>
-                                <li><a href="#">RGB</a></li>
-                                <li><a href="#">Camera</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </div>
+        %include nav rooms=rooms, functions=functions
+
 
         <div class="container">
             %for device in devices:
@@ -80,43 +40,43 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#{{device[0]}}collapse">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#{{device[1]}}collapse">
                       {{device[0]}}
                     </a>
                   </h4>
                 </div>
-                <div id="{{device[0]}}collapse" class="panel-collapse collapse">
+                <div id="{{device[1]}}collapse" class="panel-collapse collapse">
                   <div class="panel-body">
                       <div class="row">
                           <div class=" col-md-7">
                               <div class="row">
                                 <div class="col-xs-1"></div>
-                                <div class="col-xs-6 slider" id="{{device[0]}}" data-callback="{{device[0]}}-slider-result" data-value="{{device[1]}}" data-id="{{device[2]}}"></div>
+                                <div class="col-xs-6 slider" id="{{device[1]}}" data-callback="{{device[1]}}-slider-result" data-value="{{device[2]}}" data-id="{{device[3]}}"></div>
                               </div>
                               <div class="row">
                                 <br>
                                 <div class="col-xs-1"></div>
                                 <div class="col-xs-6">
-                                    <button type="button" class="btn btn-primary btn-sm downbutton" id="{{device[0]}}downbutton">
+                                    <button type="button" class="btn btn-primary btn-sm downbutton" id="{{device[1]}}downbutton">
                                         <span class="glyphicon glyphicon-minus"></span>
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-sm upbutton" id="{{device[0]}}upbutton">
+                                    <button type="button" class="btn btn-primary btn-sm upbutton" id="{{device[1]}}upbutton">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </button>
-                                    <b>&nbsp&nbsp&nbspCurrent Brightness: </b><span class="{{device[0]}}-slider-result">0</span>%
+                                    <b>&nbsp&nbsp&nbspCurrent Brightness: </b><span class="{{device[1]}}-slider-result">0</span>%
                                 </div>
                               </div>
                           </div>
                           <div class=" col-md-5">
-                            <button type="button" class="btn btn-primary btn-lg offButton" id="{{device[0]}}offButton">
+                            <button type="button" class="btn btn-primary btn-lg offButton" id="{{device[1]}}offButton">
                                 <span class="fa fa-circle-o fa-2x"></span>
                                 <br>OFF
                             </button>
-                            <button type="button" class="btn btn-primary btn-lg onButton" id="{{device[0]}}onButton">
+                            <button type="button" class="btn btn-primary btn-lg onButton" id="{{device[1]}}onButton">
                                 <span class="fa fa-sun-o fa-2x"></span>
                                 <br>ON
                             </button>
-                            <button type="button" class="btn btn-primary btn-lg nightButton" id="{{device[0]}}  nightButton">
+                            <button type="button" class="btn btn-primary btn-lg nightButton" id="{{device[1]}}  nightButton">
                                 <span class="fa fa-moon-o fa-2x"></span>
                                 <br>Night
                             </button>

@@ -7,15 +7,19 @@ import json
 from phue import Bridge
 from HomerHelper import getDeviceName
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 IMP_API = "https://agent.electricimp.com/"
 SPARK_API = "https://api.spark.io/v1/"
 spark_token = 'e8a5241dee80316554e4f72c516ecf3ff26e15f6'
 
 
-b = Bridge("192.168.2.132",config_file_path="./.python_hue")
+b = Bridge("Philips-hue.mattlovett.com", config_file_path = "./HOMEr_hue")
 
 # If the app is not registered and the button is not pressed, press the button and call connect() (this only needs to be run a single time)
-#b.connect()
+b.connect()
 
 # Get the bridge state (This returns the full dictionary that you can explore)
 b.get_api()
@@ -26,13 +30,16 @@ def sendDeviceBrightness(device_id, device_type, brightness):
     if device_type == "imp":
         url = IMP_API
         urllib.urlopen(IMP_API + device_id + "?setbrightness= " + brightness)
+
     elif device_type == "hue":
         name = getDeviceName(None, device_id)
-	if brightness == "0":
-	  b.set_light(name,'on', False)
-	else:
-	  b.set_light(name,'on', True)
-          b.set_light(name, 'bri',int(brightness))
+        logging.debug("HUE brightness being set to " + brightness)
+        if int(brightness) == 0:
+            b.set_light(name, 'on', False)
+            print "off"
+        else:
+            b.set_light(name, 'on', True)
+            b.set_light(name, 'bri', int(brightness))
 
     elif device_type == "spark":
         # url = SPARK_API
@@ -56,20 +63,6 @@ def sendDeviceBrightness(device_id, device_type, brightness):
             #raise SparkError(spark_response)
             print "error"
 
-def hex2rgb(hex):
-    if hex is not None:
-        red = str(int(hex[0:2],16))    # grabs the chars that are for each color and splits them
-        red = red.zfill(3)             # converts from hex to int and then to a string, then
-        green = str(int(hex[2:4],16))  # fills them to 3 digits always. rinse and repeat for other
-        green = green.zfill(3)         # colors.  String all three together comma separated list.
-        blue = str(int(hex[4:6],16))
-        blue = blue.zfill(3)
-        rgb = ','
-        rgb = rgb.join((red, green, blue))
-        return rgb
-    else:
-        rgb = "000,000,000"
-        return rgb
 
 
 class SparkError(Exception): pass

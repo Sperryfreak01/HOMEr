@@ -68,12 +68,17 @@ $(".slider").each(function(){
         },
         change: function(event, ui) {
             var curVal = ui.value;
+            var str1 = window.location.protocol;
+            var str2 = "//";
+            var str3 = window.location.host;
+            var str4 = "/setbrightness";
+            var localURL = str1.concat(str2,str3,str4);
             $("span." + callback).html($(this).slider('value'));
             $.ajax({
                 dataType: "json",
                 contentType: "application/json",
                 type: 'POST',
-                url: "https://mattlovett.com/homer/setbrightness",
+                url: localURL,
                 data: {
                     "id":deviceid,
                     "brightness":Math.round((curVal/100)*255)
@@ -93,12 +98,17 @@ $(".slider").each(function(){
         },
         stop: function(event, ui) {
             var curVal = ui.value;
+            var str1 = window.location.protocol;
+            var str2 = "//";
+            var str3 = window.location.host;
+            var str4 = "/setbrightness";
+            var localURL = str1.concat(str2,str3,str4);
             $("span." + callback).html($(this).slider('value'));
             $.ajax({
                 dataType: "json",
                 contentType: "application/json",
                 type: 'POST',
-                url: "https://mattlovett.com/homer/setbrightness",
+                url: localURL,
                 data: {
                     "id":deviceid,
                     "brightness":Math.round((curVal/100)*255)
