@@ -33,8 +33,13 @@ def sendDeviceBrightness(device_id, device_type, brightness):
 
     elif device_type == "hue":
         name = getDeviceName(None, device_id)
-        print int(brightness)
-        b.set_light(name, 'bri', int(brightness))
+        logging.debug("HUE brightness being set to " + brightness)
+        if int(brightness) == 0:
+            b.set_light(name, 'on', False)
+            print "off"
+        else:
+            b.set_light(name, 'on', True)
+            b.set_light(name, 'bri', int(brightness))
 
     elif device_type == "spark":
         # url = SPARK_API
