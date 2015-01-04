@@ -30,7 +30,7 @@ class DB:
 
 db = DB()
 
-def insert_history(con, device_name,device_id,event):
+def insert_history( device_name,device_id,event):
     try:
        # print device_name
         sql_insert = "INSERT INTO `History`(`name`, `id`, `event`) VALUES (%s,%s,%s)"
@@ -93,15 +93,15 @@ def getDeviceFunction(con, id):
         return device_function
 
 def deviceIdCheck(id):
-    if re.match(r"[a-zA-Z0-9]{0,128}$", id) is None: # check that id only has letters and numbers
-        return False
+    #if re.match(r"[a-zA-Z0-9]{0,128}$", id) is None: # check that id only has letters and numbers
+    #    return False
+    #else:
+    cur =db.query("SELECT * FROM Devices WHERE id = %s", id)
+    row = cur.fetchall()
+    if row:
+        return True
     else:
-        cur =db.query("SELECT * FROM Devices WHERE id = %s", id)
-        row = cur.fetchall()
-        if row:
-            return True
-        else:
-            return False
+        return False
 
 def userIdCheck(con, id):
     if re.match(r"[a-zA-Z0-9]{0,128}$", id) is None: # check that id only has letters and numbers
@@ -128,8 +128,18 @@ def idCheck(id_type, id):
         else:
             return False
 
+def roomCheck(name):
+    cur = db.query('SELECT * FROM Rooms WHERE `name` = %s', name)
+    row = cur.fetchall()
+    print row
+    if row:
+        return True
+    else:
+        return False
+
+
 def getUserName(con, id):
-    cur = db.query("SELECT `name` FROM Users WHERE id = %s", id)
+    cur = db.query('SELECT `name` FROM Users WHERE id = %s', id)
     row = cur.fetchall()
     for col in row:
         device_name = col["name"]
@@ -147,9 +157,10 @@ def lookupDeviceAttribute(con, function, attr_name):
             for x in xrange(1, 10):
                 col_name = "value%d" % x  # iterate through attribute field looking for the column we need
                 if row[col_name] == attr_name:
-                    logger.debug("col name: %s  row[]: %s  attr name: %s " % (col_name, row[col_name], attr_name))
+                    logger.debug("Device Type: %s col name: %s  row[]: %s  attr name: %s " % (function, col_name, row[col_name], attr_name))
                     return col_name
             else:
+                logger.debug("Unable to find attribute for Device Type: %s" % function)
                 return None
     except MySQLdb.IntegrityError:
             return None
@@ -168,5 +179,29 @@ def hex2rgb(hex):
     else:
         rgb = "000,000,000"
         return rgb
+
+def buildNav():
+    cur = db.query("SELECT * FROM `Rooms`",None)
+    row = cur.fetchall()
+
+    rooms = []  # parser for the information returned
+    for col in row:
+        roomname = col['name']
+        roomname = roomname.replace(" ", "%20")
+        roomlist = (col['name'], roomname)
+        rooms.append(roomlist)
+
+    cur = db.query("SELECT * FROM `Device_Types`",None)
+    row = cur.fetchall()
+
+    functions = []  # parser for the information returned
+    for col in row:
+        functionname = col['type']
+        functionname = functionname.replace(" ", "%20")
+        functionlist = (col['type'], functionname)
+        functions.append(functionlist)
+
+    return {'rooms':rooms, 'functions':functions}
+
 
 

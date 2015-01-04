@@ -10,16 +10,16 @@
 
         <title>HOMEr Home Automation</title>
 
-              <!-- Bootstrap core CSS -->
-        <link href="static/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
 
         <!-- Custom styles for this template -->
-        <link href="static/css/HOMEr.css" rel="stylesheet">
-        <link href="static/css/bootstrap-slider.css" rel="stylesheet">
+        <link href="/static/css/HOMEr.css" rel="stylesheet">
+        <link href="/static/css/bootstrap-slider.css" rel="stylesheet">
         <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
-        <link href="static/css/toastr.css" rel="stylesheet">
-        <link href="static/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/static/css/toastr.css" rel="stylesheet">
+        <link href="/static/css/font-awesome.min.css" rel="stylesheet">
 
 
 
@@ -33,50 +33,49 @@
     <body>
         %include nav rooms=rooms, functions=functions
 
-
         <div class="container">
-            %for device in devices:
+            %for lamp in lamps:
             <div class="panel-group" id="accordion">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#{{device[1]}}collapse">
-                      {{device[0]}}
+                    <a data-toggle="collapse" data-parent="#accordion" href="#{{lamp[1]}}collapse">
+                      {{lamp[0]}}
                     </a>
                   </h4>
                 </div>
-                <div id="{{device[1]}}collapse" class="panel-collapse collapse">
+                <div id="{{lamp[1]}}collapse" class="panel-collapse collapse">
                   <div class="panel-body">
                       <div class="row">
                           <div class=" col-md-7">
                               <div class="row">
                                 <div class="col-xs-1"></div>
-                                <div class="col-xs-6 slider" id="{{device[1]}}" data-callback="{{device[1]}}-slider-result" data-value="{{device[2]}}" data-id="{{device[3]}}"></div>
+                                <div class="col-xs-6 slider" id="{{lamp[1]}}" data-callback="{{lamp[1]}}-slider-result" data-value="{{lamp[2]}}" data-id="{{lamp[3]}}"></div>
                               </div>
                               <div class="row">
                                 <br>
                                 <div class="col-xs-1"></div>
                                 <div class="col-xs-6">
-                                    <button type="button" class="btn btn-primary btn-sm downbutton" id="{{device[1]}}downbutton">
+                                    <button type="button" class="btn btn-primary btn-sm downbutton" id="{{lamp[1]}}downbutton">
                                         <span class="glyphicon glyphicon-minus"></span>
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-sm upbutton" id="{{device[1]}}upbutton">
+                                    <button type="button" class="btn btn-primary btn-sm upbutton" id="{{lamp[1]}}upbutton">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </button>
-                                    <b>&nbsp&nbsp&nbspCurrent Brightness: </b><span class="{{device[1]}}-slider-result">0</span>%
+                                    <b>&nbsp&nbsp&nbspCurrent Brightness: </b><span class="{{lamp[1]}}-slider-result">0</span>%
                                 </div>
                               </div>
                           </div>
                           <div class=" col-md-5">
-                            <button type="button" class="btn btn-primary btn-lg offButton" id="{{device[1]}}offButton">
+                            <button type="button" class="btn btn-primary btn-lg offButton" id="{{lamp[1]}}offButton">
                                 <span class="fa fa-circle-o fa-2x"></span>
                                 <br>OFF
                             </button>
-                            <button type="button" class="btn btn-primary btn-lg onButton" id="{{device[1]}}onButton">
+                            <button type="button" class="btn btn-primary btn-lg onButton" id="{{lamp[1]}}onButton">
                                 <span class="fa fa-sun-o fa-2x"></span>
                                 <br>ON
                             </button>
-                            <button type="button" class="btn btn-primary btn-lg nightButton" id="{{device[1]}}  nightButton">
+                            <button type="button" class="btn btn-primary btn-lg nightButton" id="{{lamp[1]}}  nightButton">
                                 <span class="fa fa-moon-o fa-2x"></span>
                                 <br>Night
                             </button>
@@ -94,9 +93,9 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
-        <script type='text/javascript' src="static/js/bootstrap.min.js"></script>
-        <script type='text/javascript' src="static/js/toastr.js"></script>
-        <script type='text/javascript' src="static/js/slider.js"></script>
+        <script type='text/javascript' src="/static/js/bootstrap.min.js"></script>
+        <script type='text/javascript' src="/static/js/toastr.js"></script>
+        <script type='text/javascript' src="/static/js/slider.js"></script>
     </body>
 </html>
 

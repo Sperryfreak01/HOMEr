@@ -12,6 +12,7 @@ import HomerHelper
 import Notifications
 import DeviceComunication
 import logging
+import WebInterface
 
 logger = logging.getLogger(__name__)
 
@@ -37,6 +38,7 @@ def getDevices():
         d['type'] = col["type"]
         d['function'] = col["function"]
         d['id'] = col["id"]
+        d['location'] = col["location"]
         objects_list.append(d)
     j = json.dumps(objects_list)
     return j
@@ -57,6 +59,7 @@ def getDevice():
         d['type'] = row["type"]
         d['function'] = row["function"]
         d['id'] = row["id"]
+        d['location'] = col["location"]
         objects_list.append(d)
 
         return json.dumps(objects_list)
@@ -103,7 +106,7 @@ def removeDevice():
         device_name = HomerHelper.getDeviceName(con, device_id)
         try:
             db.query("DELETE FROM Devices WHERE id = %s", device_id)
-            HomerHelper.insert_history(con, device_name, device_id, "device removed")
+            HomerHelper.insert_history(device_name, device_id, "device removed")
             return "OK"
         except MySQLdb.IntegrityError:
             abort(400, "Doh! Unable to remove device. ")
@@ -116,37 +119,42 @@ def addDevice():
     device_type = request.forms.get('type')
     device_function = request.forms.get('function')
     device_id = request.forms.get('id')
+    device_location = request.forms.get('location')
 
     if device_name is not None: # check that the device name is present
         if re.match(r"\w+$", device_type) is not None: # check that device type is alphanumeric
             #if re.match(r"[a-zA-Z0-9]{0,128}$", device_id) is not None: # check that id only has letters and numbers
-            if HomerHelper.deviceIdCheck(device_id): # check that id only has letters and numbers
-                try:
-                    sql_insert = "INSERT INTO `Devices`(`name`, `type`, `function`, `id`) VALUES (%s,%s,%s,%s)"
-                    db.query(sql_insert, (device_name, device_type, device_function, device_id))
+            if HomerHelper.deviceIdCheck(device_id) is False: # check that id only has letters and numbers
+                if HomerHelper.roomCheck(device_location):
+                    try:
+                        sql_insert = "INSERT INTO `Devices`(`name`, `type`, `function`, `id`, `location`) VALUES (%s, %s,%s,%s,%s)"
+                        db.query(sql_insert, (device_name, device_type, device_function, device_id, device_location))
 
-                    HomerHelper.insert_history(con,device_name, device_id, "device added")
+                        HomerHelper.insert_history(device_name, device_id, "device added")
 
-                except MySQLdb.IntegrityError:
-                    abort(400, "Doh! Device exsists")
+                    except MySQLdb.IntegrityError:
+                        abort(400, "Doh! Device exsists")
 
-                try:
-                    cur = db.query("SELECT * FROM Devices WHERE id = %s", device_id)
-                    rows = cur.fetchall()
+                    try:
+                        cur = db.query("SELECT * FROM Devices WHERE id = %s", device_id)
+                        rows = cur.fetchall()
 
-                    objects_list = []
-                    for row in rows:
-                        d = collections.OrderedDict()
-                        d['name'] = row["name"]
-                        d['type'] = row["type"]
-                        d['function'] = row["function"]
-                        d['id'] = row["id"]
-                        objects_list.append(d)
+                        objects_list = []
+                        for row in rows:
+                            d = collections.OrderedDict()
+                            d['name'] = row["name"]
+                            d['type'] = row["type"]
+                            d['function'] = row["function"]
+                            d['id'] = row["id"]
+                            d['location'] = row["location"]
+                            objects_list.append(d)
 
-                    return json.dumps(objects_list)
+                        return json.dumps(objects_list)
 
-                except MySQLdb.IntegrityError:
-                    abort(400, "Doh! Adding user failed")
+                    except MySQLdb.IntegrityError:
+                        abort(400, "Doh! Adding user failed")
+                else:
+                    abort(400, "Doh! That request was no bueno.  The room is invalid.")
             else:
                 abort(400, "Doh! That request was no bueno.  The id is invalid." + device_id)
         else:
@@ -179,7 +187,7 @@ def removeUser():
         try:
             db.query("DELETE FROM Users WHERE id = %s", user_id)
             #con.commit()
-            HomerHelper.insert_history(con, user_name, user_id, "user removed")
+            HomerHelper.insert_history(user_name, user_id, "user removed")
 
             return("OK")
 
@@ -199,7 +207,7 @@ def addUser():
             try:
                 sql_insert = "INSERT INTO `Users`(`name`, `id`) VALUES (%s,%s)"
                 db.query(sql_insert, (user_name, user_id))
-                HomerHelper.insert_history(con, user_name, user_id, "device added")
+                HomerHelper.insert_history(user_name, user_id, "device added")
 
                 cur = db.query("SELECT * FROM Users WHERE id = %s", user_id)
                 row = cur.fetchone()
@@ -244,7 +252,7 @@ def setBrightness():
                 device_type = HomerHelper.getDeviceType(con, device_id)
                 DeviceComunication.sendDeviceBrightness(device_id, device_type, brightness)
                 history_event = "set brightness to: " + brightness
-                HomerHelper.insert_history(con, device_name, device_id, history_event)
+                HomerHelper.insert_history(device_name, device_id, history_event)
 
 
                 d = collections.OrderedDict()
@@ -308,7 +316,7 @@ def setState():
                 device_name = HomerHelper.getDeviceName(con, device_id)  # lookup the name, needed for history
                 device_type = HomerHelper.getDeviceType(con, device_id)  # lookup the device type needed for history
                 history_event = "set state to: " + device_state
-                HomerHelper.insert_history(con, device_name, device_id, history_event)
+                HomerHelper.insert_history(device_name, device_id, history_event)
                 return "OK"
 
             except MySQLdb.IntegrityError:
@@ -359,7 +367,7 @@ def savePicture():
 
             device_name = HomerHelper.getDeviceName(con, device_id)  # lookup the name, needed for history
             history_event = "stored picture from  " + picture_location
-            HomerHelper.insert_history(con, device_name, device_id, history_event)
+            HomerHelper.insert_history(device_name, device_id, history_event)
 
             return "OK"
         except MySQLdb.IntegrityError:
@@ -419,7 +427,7 @@ def setLocation():
             sql_update = "UPDATE `Users` SET `Location`= %s  WHERE ID = %s"
             db.query(sql_update, (user_location, user_id))
             history_event = "set user location to: " + user_location
-            HomerHelper.insert_history(con, user_name, user_id, history_event)
+            HomerHelper.insert_history(user_name, user_id, history_event)
             return "OK"
 
         except MySQLdb.IntegrityError:
@@ -463,7 +471,7 @@ def setColor():
         t = threading.Thread(target=DeviceComunication.sendDeviceColor, args=(device_id, device_color, device_state))
         t.start()
         history_event = "set color to: " + device_color + "set mode to " + device_state
-        HomerHelper.insert_history(con, device_name, device_id, history_event)
+        HomerHelper.insert_history(device_name, device_id, history_event)
         return "OK"
     else:
         abort(400, "Doh! Device ID was not found")
@@ -507,14 +515,20 @@ def getColor():
 @route('/')
 @view('index')
 def index():
-    return template('default')
+    nav = HomerHelper.buildNav()
+
+    return template('default', rooms=nav['rooms'], functions=nav['functions'])
 
 @route('/static/:path#.+#', name='static')
 def static(path):
     return static_file(path, root='static')
 
-@get('/viewbrightness')
+
+
+
+@get('/viewLamp')
 def viewBrightness():
+    nav = HomerHelper.buildNav()
     cur = db.query("SELECT * FROM `Devices` WHERE function = %s", 'lamp')
     row = cur.fetchall()
     brightness_location = HomerHelper.lookupDeviceAttribute(con, 'lamp', 'Brightness')
@@ -523,14 +537,18 @@ def viewBrightness():
         devicename = col['name']
         devicename = devicename.replace(" ", "_")
         lampdevices = (col['name'], devicename, str((int(col[brightness_location])*100 )/255),col['id'])
-        print "viewbrightness"
-        print lampdevices
         html.append(lampdevices)
-    return template('brightness', devices=html)
+    return template('brightness', devices=html, rooms=nav['rooms'], functions=nav['functions'])
+
+@get('/viewrooms')
+def viewRooms():
+    nav = HomerHelper.buildNav()
+    return template('rooms', rooms=nav['rooms'], functions=nav['functions'])
 
 
 @get('/viewhistory')
 def viewHistory():
+    nav = HomerHelper.buildNav()
     #history_index = request.params.get('index')
     entry_count = '25'
     try:
@@ -549,7 +567,22 @@ def viewHistory():
                 col["id"],
                 )
             history.append(historyEntry)
-        return template('history', entries=history)
+        return template('history', entries=history, rooms=nav['rooms'], functions=nav['functions'])
     except MySQLdb.IntegrityError:
         abort(400, "Doh! Device doesnt exist")
 
+@get('/setup/adddevice')
+def viewaddDevice():
+    nav = HomerHelper.buildNav()
+    cur = db.query("SELECT * FROM `Devices` WHERE function = %s", 'lamp')
+    row = cur.fetchall()
+    brightness_location = HomerHelper.lookupDeviceAttribute(con, 'lamp', 'Brightness')
+    html = []  # parser for the information returned
+    for col in row:
+        devicename = col['name']
+        devicename = devicename.replace(" ", "_")
+        lampdevices = (col['name'], devicename, str((int(col[brightness_location])*100 )/255),col['id'])
+        print "viewbrightness"
+        print lampdevices
+        html.append(lampdevices)
+    return template('brightness', devices=html, rooms=nav['rooms'], functions=nav['functions'])
