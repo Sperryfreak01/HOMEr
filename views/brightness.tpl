@@ -31,7 +31,7 @@
     </head>
 
     <body>
-        %include nav rooms=rooms, functions=functions
+        %include nav webroot=webroot, rooms=rooms, functions=functions
 
 
         <div class="container">
@@ -51,7 +51,7 @@
                           <div class=" col-md-7">
                               <div class="row">
                                 <div class="col-xs-1"></div>
-                                <div class="col-xs-6 slider" id="{{device[1]}}" data-callback="{{device[1]}}-slider-result" data-value="{{device[2]}}" data-id="{{device[3]}}"></div>
+                                <div class="col-xs-6 slider" id="{{device[1]}}" data-callback="{{device[1]}}-slider-result" data-value="{{device[2]}}" data-id="{{device[3]}}" data-webroot="{{webroot}}"></div>
                               </div>
                               <div class="row">
                                 <br>

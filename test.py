@@ -1,9 +1,15 @@
 __author__ = 'matt'
 
 
-html = []
-testa = ("test", "test2", "test3")
-testb = ("tst", "tst2", "tst3")
-html.append(testa)
-html.append(testb)
-print html
+root = "matlovett.com/homer"
+
+route = root.join("/viewstuff")
+
+root = None
+
+route2 = root.join("/viewstuff") 
+
+print route
+print ""
+
+print route2

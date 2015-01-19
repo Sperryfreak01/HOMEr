@@ -10,16 +10,16 @@
 
         <title>HOMEr Home Automation</title>
 
-        <!-- Bootstrap core CSS -->
-        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+              <!-- Bootstrap core CSS -->
+        <link href="{{webroot}}static/css/bootstrap.min.css" rel="stylesheet">
 
 
         <!-- Custom styles for this template -->
-        <link href="/static/css/HOMEr.css" rel="stylesheet">
-        <link href="/static/css/bootstrap-slider.css" rel="stylesheet">
+        <link href="{{webroot}}static/css/HOMEr.css" rel="stylesheet">
+        <link href="{{webroot}}static/css/bootstrap-slider.css" rel="stylesheet">
         <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
-        <link href="/static/css/toastr.css" rel="stylesheet">
-        <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+        <link href="{{webroot}}static/css/toastr.css" rel="stylesheet">
+        <link href="{{webroot}}static/css/font-awesome.min.css" rel="stylesheet">
 
 
 
@@ -31,7 +31,8 @@
     </head>
 
     <body>
-        %include nav rooms=rooms, functions=functions
+        %include nav webroot=webroot, rooms=rooms, functions=functions
+
 
         <div class="container">
             %for lamp in lamps:
@@ -50,7 +51,7 @@
                           <div class=" col-md-7">
                               <div class="row">
                                 <div class="col-xs-1"></div>
-                                <div class="col-xs-6 slider" id="{{lamp[1]}}" data-callback="{{lamp[1]}}-slider-result" data-value="{{lamp[2]}}" data-id="{{lamp[3]}}"></div>
+                                <div class="col-xs-6 slider" id="{{lamp[1]}}" data-callback="{{lamp[1]}}-slider-result" data-value="{{lamp[2]}}" data-id="{{lamp[3]}}" data-webroot="{{webroot}}"></div>
                               </div>
                               <div class="row">
                                 <br>
@@ -93,9 +94,9 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
-        <script type='text/javascript' src="/static/js/bootstrap.min.js"></script>
-        <script type='text/javascript' src="/static/js/toastr.js"></script>
-        <script type='text/javascript' src="/static/js/slider.js"></script>
+        <script type='text/javascript' src="{{webroot}}static/js/bootstrap.min.js"></script>
+        <script type='text/javascript' src="{{webroot}}static/js/toastr.js"></script>
+        <script type='text/javascript' src="{{webroot}}static/js/slider.js"></script>
     </body>
 </html>
 

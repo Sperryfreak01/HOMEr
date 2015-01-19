@@ -25,7 +25,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rooms <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         %for room in rooms:
-                        <li><a href="/room/{{room[1]}}">{{room[0]}} </a></li>
+                        <li><a href="{{webroot}}room/{{room[1]}}">{{room[0]}} </a></li>
                         %end
                     </ul>
                 </li>
@@ -33,7 +33,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Devices <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         %for function in functions:
-                        <li><a href="/view{{function[1]}}">{{function[0]}} </a></li>
+                        <li><a href="{{webroot}}view{{function[1]}}">{{function[0]}} </a></li>
                         %end
 
                     </ul>

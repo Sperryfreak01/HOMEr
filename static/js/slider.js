@@ -41,7 +41,9 @@ $(".slider").each(function(){
     var datavalue = $(this).data('value');
     var callback = $(this).data('callback');
     var deviceid = $(this).data('id');
+    var webroot = $(this).data('webroot');
     console.log(datavalue);
+    console.log(webroot);
     console.log(deviceid);
     toastr.options = {
         "closeButton": true,
@@ -71,8 +73,8 @@ $(".slider").each(function(){
             var str1 = window.location.protocol;
             var str2 = "//";
             var str3 = window.location.host;
-            var str4 = "/setbrightness";
-            var localURL = str1.concat(str2,str3,str4);
+            var str4 = "setbrightness";
+            var localURL = str1.concat(str2,str3,webroot,str4);
             $("span." + callback).html($(this).slider('value'));
             $.ajax({
                 dataType: "json",
@@ -101,8 +103,8 @@ $(".slider").each(function(){
             var str1 = window.location.protocol;
             var str2 = "//";
             var str3 = window.location.host;
-            var str4 = "/setbrightness";
-            var localURL = str1.concat(str2,str3,str4);
+            var str4 = "setbrightness";
+            var localURL = str1.concat(str2,str3,webroot,str4);
             $("span." + callback).html($(this).slider('value'));
             $.ajax({
                 dataType: "json",
@@ -116,7 +118,7 @@ $(".slider").each(function(){
                 success: function(data) {
                     toastr.success("Brightness set to " + data.brightness, data.name)
                 },
-                error: function(e, errorText, httpDescription) {
+                error:   function(e, errorText, httpDescription) {
                     console.log("post failed");
                     console.log(errorText);
                         if (errorText  == "error") {

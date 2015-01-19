@@ -8,6 +8,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
+
 class DB:
   conn = None
 
@@ -148,7 +150,13 @@ def getUserName(con, id):
     else:
         return device_name
 
-def lookupDeviceAttribute(con, function, attr_name):
+def getSettingValue(SettingName):
+    cur = db.query('SELECT `value` FROM Settings WHERE name = %s', SettingName)
+    row = cur.fetchone()
+    value = row['value']
+    return value
+
+def lookupDeviceAttribute(function, attr_name):
     try:
         sql_querry = "SELECT * FROM `Device_Types` WHERE type = %s"
         cur = db.query(sql_querry, function)
@@ -181,6 +189,8 @@ def hex2rgb(hex):
         return rgb
 
 def buildNav():
+    webroot = getSettingValue('webroot')
+
     cur = db.query("SELECT * FROM `Rooms`",None)
     row = cur.fetchall()
 
@@ -201,7 +211,7 @@ def buildNav():
         functionlist = (col['type'], functionname)
         functions.append(functionlist)
 
-    return {'rooms':rooms, 'functions':functions}
+    return {'webroot':webroot, 'rooms':rooms, 'functions':functions}
 
 
 

@@ -5,7 +5,11 @@ __author__ = 'matt'
 import RESTInterface
 import logging
 import logging.handlers
-from bottle import *
+import bottle
+import WebInterface
+import HomerHelper
+
+
 
 logging_level = 'DEBUG'
 
@@ -17,8 +21,10 @@ logging.info('HOMEr service started')
 def endprog():
     logging.info('HOMEr service stopping')
 
+bottleApp = bottle.default_app()
+bottleApp.merge(RESTInterface.RESTApp)
+bottleApp.merge(WebInterface.WebApp)
+
 
 ########################################################################
-run(reloader=True, host='0.0.0.0', port=8081, debug=True)
-
-
+bottleApp.run(reloader=True, host='0.0.0.0', port=8081, debug=True)
