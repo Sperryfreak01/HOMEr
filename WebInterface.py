@@ -1,53 +1,41 @@
 __author__ = 'matt'
 
-from bottle import *
+import bottle
 import MySQLdb
-import collections
-import json
-import urllib
-import urllib2
-import re
-import threading
 import HomerHelper
-import Notifications
-import DeviceComunication
 import logging
-import WebInterface
 
 
 db = HomerHelper.DB()
-
 logger = logging.getLogger(__name__)
+WebApp = bottle.Bottle()
 
-@route('/')
-@view('index')
+
+@WebApp.route('/')
+@bottle.view('index')
 def index():
     nav = HomerHelper.buildNav()
+    return bottle.template('default', webroot=nav['webroot'], rooms=nav['rooms'], functions=nav['functions'])
 
-    return template('default', rooms=nav['rooms'], functions=nav['functions'])
-
-@route('/static/:path#.+#', name='static')
+@WebApp.route('/static/:path#.+#', name='static')
 def static(path):
-    return static_file(path, root='static')
+    return bottle.static_file(path, root='static')
 
-
-
-
-@get('/viewLamp')
+@WebApp.get('/viewLamp')
 def viewBrightness():
     nav = HomerHelper.buildNav()
     cur = db.query("SELECT * FROM `Devices` WHERE function = %s", 'lamp')
     row = cur.fetchall()
-    brightness_location = HomerHelper.lookupDeviceAttribute(con, 'lamp', 'Brightness')
+    brightness_location = HomerHelper.lookupDeviceAttribute('lamp', 'Brightness')
     html = []  # parser for the information returned
     for col in row:
         devicename = col['name']
         devicename = devicename.replace(" ", "_")
         lampdevices = (col['name'], devicename, str((int(col[brightness_location])*100 )/255),col['id'])
         html.append(lampdevices)
-    return template('brightness', devices=html, rooms=nav['rooms'], functions=nav['functions'])
+    return bottle.template('brightness', devices=html, webroot=nav['webroot'], rooms=nav['rooms'], functions=nav['functions'])
 
-@get('/room/<roomname>')
+@WebApp.get('/room/<roomname>')
 def viewRooms(roomname):
     nav = HomerHelper.buildNav()
     cur = db.query("SELECT * FROM `Device_Types`", None)  # Lookup all the device types to lookup devices in groups
@@ -69,9 +57,9 @@ def viewRooms(roomname):
     print 'html'
     print html
 
-    return template('rooms', lamps=html['Lamp'] , rooms=nav['rooms'], functions=nav['functions'])
+    return bottle.template('rooms', lamps=html['Lamp'], webroot=nav['webroot'], rooms=nav['rooms'], functions=nav['functions'])
 
-@get('/viewhistory')
+@WebApp.get('/viewhistory')
 def viewHistory():
     nav = HomerHelper.buildNav()
     #history_index = request.params.get('index')
@@ -92,11 +80,11 @@ def viewHistory():
                 col["id"],
                 )
             history.append(historyEntry)
-        return template('history', entries=history, rooms=nav['rooms'], functions=nav['functions'])
+        return bottle.template('history', entries=history, webroot=nav['webroot'], rooms=nav['rooms'], functions=nav['functions'])
     except MySQLdb.IntegrityError:
         abort(400, "Doh! Device doesnt exist")
 
-@get('/setup/adddevice')
+@WebApp.get('/setup/adddevice')
 def viewaddDevice():
     nav = HomerHelper.buildNav()
     cur = db.query("SELECT * FROM `Devices` WHERE function = %s", 'lamp')
@@ -110,4 +98,4 @@ def viewaddDevice():
         print "viewbrightness"
         print lampdevices
         html.append(lampdevices)
-    return template('brightness', devices=html, rooms=nav['rooms'], functions=nav['functions'])
+    return bottle.template('brightness', devices=html, webroot=nav['webroot'], rooms=nav['rooms'], functions=nav['functions'])

@@ -1,6 +1,6 @@
 __author__ = 'matt'
 
-from bottle import *
+import bottle
 import MySQLdb
 import collections
 import json
@@ -12,7 +12,9 @@ import HomerHelper
 import Notifications
 import DeviceComunication
 import logging
-import WebInterface
+#import WebInterface
+
+RESTApp = bottle.Bottle()
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +28,7 @@ con.close()
 db = HomerHelper.DB()
 
 
-@get('/getdevices')  # returns all devices registered in teh system
+@RESTApp.get('/getdevices')  # returns all devices registered in teh system
 def getDevices():
     cur = db.query("SELECT * FROM `Devices`", None)
     row = cur.fetchall()
@@ -43,10 +45,10 @@ def getDevices():
     j = json.dumps(objects_list)
     return j
 
-@get('/getdevice')  # returns all devices registered in teh system
+@RESTApp.get('/getdevice')  # returns all devices registered in teh system
 def getDevice():
 
-    device_id = request.params.get('id')
+    device_id = bottle.request.params.get('id')
     if HomerHelper.idCheck('Devices', device_id):  #validate the device ID
         sql_query = "SELECT * FROM `Devices` WHERE `id` = %s "
         cur = db.query(sql_query, device_id)
@@ -64,15 +66,12 @@ def getDevice():
 
         return json.dumps(objects_list)
     else:
-        abort(400, "Doh! " + device_id + " is not a valid ID or it is not enrolled in HOMEr")
+        bottle.abort(400, "Doh! " + device_id + " is not a valid ID or it is not enrolled in HOMEr")
 
-
-
-
-@get('/gethistory')  # used to add a new device to the system
+@RESTApp.get('/gethistory')  # used to add a new device to the system
 def getHistory():
-    history_index = request.params.get('index')
-    entry_count = request.params.get('count')
+    history_index = bottle.request.params.get('index')
+    entry_count = bottle.request.params.get('count')
 
     #if HomerHelper.idCheck(con, 'Devices', device_id):
     try:
@@ -93,14 +92,14 @@ def getHistory():
 
         return json.dumps(objects_list)
     except MySQLdb.IntegrityError:
-        abort(400, "Doh! Device doesnt exist")
+        bottle.abort(400, "Doh! Device doesnt exist")
     #else:
-    #    abort(400, "Doh! Device ID was not found")
+    #    bottle.abort(400, "Doh! Device ID was not found")
 
 
-@delete('/removedevice')  # returns all devices registered in teh system
+@RESTApp.delete('/removedevice')  # returns all devices registered in teh system
 def removeDevice():
-    device_id = request.forms.get('id')
+    device_id = bottle.request.forms.get('id')
 
     if HomerHelper.idCheck('Devices', device_id):  #validate the device ID
         device_name = HomerHelper.getDeviceName(con, device_id)
@@ -109,17 +108,17 @@ def removeDevice():
             HomerHelper.insert_history(device_name, device_id, "device removed")
             return "OK"
         except MySQLdb.IntegrityError:
-            abort(400, "Doh! Unable to remove device. ")
+            bottle.abort(400, "Doh! Unable to remove device. ")
     else:
-        abort(400,"Doh! " + device_id + " is not a valid ID or it is not enrolled in HOMEr")
+        bottle.abort(400,"Doh! " + device_id + " is not a valid ID or it is not enrolled in HOMEr")
 
-@post('/adddevice')  # used to add a new device to the system
+@RESTApp.post('/adddevice')  # used to add a new device to the system
 def addDevice():
-    device_name = request.forms.get('name')
-    device_type = request.forms.get('type')
-    device_function = request.forms.get('function')
-    device_id = request.forms.get('id')
-    device_location = request.forms.get('location')
+    device_name = bottle.request.forms.get('name')
+    device_type = bottle.request.forms.get('type')
+    device_function = bottle.request.forms.get('function')
+    device_id = bottle.request.forms.get('id')
+    device_location = bottle.request.forms.get('location')
 
     if device_name is not None: # check that the device name is present
         if re.match(r"\w+$", device_type) is not None: # check that device type is alphanumeric
@@ -133,7 +132,7 @@ def addDevice():
                         HomerHelper.insert_history(device_name, device_id, "device added")
 
                     except MySQLdb.IntegrityError:
-                        abort(400, "Doh! Device exsists")
+                        bottle.abort(400, "Doh! Device exsists")
 
                     try:
                         cur = db.query("SELECT * FROM Devices WHERE id = %s", device_id)
@@ -152,18 +151,18 @@ def addDevice():
                         return json.dumps(objects_list)
 
                     except MySQLdb.IntegrityError:
-                        abort(400, "Doh! Adding user failed")
+                        bottle.abort(400, "Doh! Adding user failed")
                 else:
-                    abort(400, "Doh! That request was no bueno.  The room is invalid.")
+                    bottle.abort(400, "Doh! That request was no bueno.  The room is invalid.")
             else:
-                abort(400, "Doh! That request was no bueno.  The id is invalid." + device_id)
+                bottle.abort(400, "Doh! That request was no bueno.  The id is invalid." + device_id)
         else:
-             abort(400,"Doh! That request was no bueno.  The type is invalid")
+             bottle.abort(400,"Doh! That request was no bueno.  The type is invalid")
     else:
-        abort(400, "Doh! That request was no bueno.  The name is invalid")
+        bottle.abort(400, "Doh! That request was no bueno.  The name is invalid")
 
 ###
-@get('/getusers')  # returns all devices registered in teh system
+@RESTApp.get('/getusers')  # returns all devices registered in teh system
 def getUsers():
     cur = db.query("SELECT * FROM Users", None)
     row = cur.fetchall()
@@ -178,9 +177,9 @@ def getUsers():
 
     return (j)
 
-@delete('/removeuser')  # returns all devices registered in teh system
+@RESTApp.delete('/removeuser')  # returns all devices registered in teh system
 def removeUser():
-    user_id = request.forms.get('id')
+    user_id = bottle.request.forms.get('id')
 
     if HomerHelper.idCheck('Users', user_id):  #validate the device ID
         user_name = HomerHelper.getUserName(con, user_id)
@@ -192,15 +191,15 @@ def removeUser():
             return("OK")
 
         except MySQLdb.IntegrityError:
-            abort(400, "Doh! Unable to remove device. ")
+            bottle.abort(400, "Doh! Unable to remove device. ")
     else:
         err_msg = "Doh! That request was no bueno. %s is not a valid ID or it is not enrolled in HOMEr" % user_id
-        abort(400, err_msg)
+        bottle.abort(400, err_msg)
 
-@post('/adduser')  # used to add a new device to the system
+@RESTApp.post('/adduser')  # used to add a new device to the system
 def addUser():
-    user_name = request.forms.get('name')
-    user_id = request.forms.get('id')
+    user_name = bottle.request.forms.get('name')
+    user_id = bottle.request.forms.get('id')
 
     if re.match(r"\w+$", user_name) is not None: # check that the device name is alphanumeric
         if re.match(r"[a-zA-Z0-9]{0,128}$", user_id) is not None: # check that id only has letters & numbers
@@ -221,32 +220,31 @@ def addUser():
                 return json.dumps(objects_list)
 
             except MySQLdb.IntegrityError:
-                abort(400, "Doh! Device exsists")
+                bottle.abort(400, "Doh! Device exsists")
         else:
-            abort(400, "Doh! That request was no bueno.  The id is invalid.")
+            bottle.abort(400, "Doh! That request was no bueno.  The id is invalid.")
     else:
-        abort(400, "Doh! That request was no bueno.  The name is invalid")
+        bottle.abort(400, "Doh! That request was no bueno.  The name is invalid")
 ###
 
-@post('/setbrightness')  # used to add a new device to the system
+@RESTApp.post('/setbrightness')  # used to add a new device to the system
 def setBrightness():
     #MANDATORY FIELDS FROM REQUEST
     #DEVICE ID AS id
     #STATE TO ASSIGN TO DEVICE AS state
 
-    device_id = request.params.get('id')
-    brightness = request.params.get('brightness')
+    device_id = bottle.request.params.get('id')
+    brightness = bottle.request.params.get('brightness')
 
     if HomerHelper.idCheck('Devices', device_id):  # validate the ID
         device_function = HomerHelper.getDeviceFunction(con, device_id)
-        brightness_location = HomerHelper.lookupDeviceAttribute(con, device_function, 'Brightness')
+        brightness_location = HomerHelper.lookupDeviceAttribute(device_function, 'Brightness')
         if brightness_location is not None:
             try:
                 sql_update = "UPDATE `Devices` SET %s " % brightness_location  # write it the same column in devices
                 sql_update += "= %s  WHERE id = %s"
                 db.query(sql_update, (brightness, device_id))
                 #con.commit()
-
 
                 device_name = HomerHelper.getDeviceName(con, device_id)
                 device_type = HomerHelper.getDeviceType(con, device_id)
@@ -264,16 +262,16 @@ def setBrightness():
 
 
             except MySQLdb.IntegrityError:
-                abort(400, "Doh! Device doesnt exist")
+                bottle.abort(400, "Doh! Device doesnt exist")
         else:
-            abort(400, "Device does not have brightness attribute")
+            bottle.abort(400, "Device does not have brightness attribute")
     else:
-        abort(400, "Doh! Device ID was not found")
+        bottle.abort(400, "Doh! Device ID was not found")
 
 
-@get('/getbrightness')  # used to add a new device to the system
+@RESTApp.get('/getbrightness')  # used to add a new device to the system
 def getBrightness():
-    device_id = request.params.get('id')
+    device_id = bottle.request.params.get('id')
 
     if HomerHelper.idCheck('Devices', device_id):
         device_function = HomerHelper.getDeviceFunction(con, device_id)
@@ -288,20 +286,20 @@ def getBrightness():
                 device_brightness = 'brightness', row[brightness_location]
                 return json.dumps(device_brightness)
             except MySQLdb.IntegrityError:
-                abort(400, "Doh! Device doesnt exist")
+                bottle.abort(400, "Doh! Device doesnt exist")
         else:
-            abort(400, "device does not have brightness attribute")
+            bottle.abort(400, "device does not have brightness attribute")
     else:
-        abort(400, "Doh! Device ID was not found")
+        bottle.abort(400, "Doh! Device ID was not found")
 
-@post('/setstate')  # set the state for devices that support the attribute
+@RESTApp.post('/setstate')  # set the state for devices that support the attribute
 def setState():
     #MANDATORY FIELDS FROM REQUEST
     #DEVICE ID AS id
     #STATE TO ASSIGN TO DEVICE AS state
 
-    device_id = request.params.get('id')  # get device ID from request
-    device_state = request.params.get('state')  # get state to assign
+    device_id = bottle.request.params.get('id')  # get device ID from request
+    device_state = bottle.request.params.get('state')  # get state to assign
 
     if HomerHelper.idCheck('Devices', device_id):  # validate the ID
         device_function = HomerHelper.getDeviceFunction(con, device_id)
@@ -320,18 +318,18 @@ def setState():
                 return "OK"
 
             except MySQLdb.IntegrityError:
-                abort(400, "Doh! Device doesnt exist")
+                bottle.abort(400, "Doh! Device doesnt exist")
         else:
-            abort(400, "device does not have state attribute")
+            bottle.abort(400, "device does not have state attribute")
     else:
-        abort(400, "Doh! Device ID was not found") # lookup the device function
+        bottle.abort(400, "Doh! Device ID was not found") # lookup the device function
 
 
 
 
-@get('/getstate')  # used to add a new device to the system
+@RESTApp.get('/getstate')  # used to add a new device to the system
 def getState():
-    device_id = request.params.get('id')
+    device_id = bottle.request.params.get('id')
 
     if HomerHelper.idCheck('Devices', device_id):
         device_function = HomerHelper.getDeviceFunction(con, device_id)
@@ -347,17 +345,17 @@ def getState():
                 return json.dumps(device_state)
 
             except MySQLdb.IntegrityError:
-                abort(400, "Doh! Device doesnt exist")
+                bottle.abort(400, "Doh! Device doesnt exist")
         else:
-            abort(400, "device does not have state attribute")
+            bottle.abort(400, "device does not have state attribute")
     else:
-        abort(400, "Doh! Device ID was not found")
+        bottle.abort(400, "Doh! Device ID was not found")
 
 
-@post('/savepicture')
+@RESTApp.post('/savepicture')
 def savePicture():
-    device_id = request.params.get('id')  # get device ID from request
-    picture_location = request.params.get('pictureURL')
+    device_id = bottle.request.params.get('id')  # get device ID from request
+    picture_location = bottle.request.params.get('pictureURL')
 
     if HomerHelper.idCheck('Devices', device_id):  # validate the ID
         try:
@@ -371,16 +369,16 @@ def savePicture():
 
             return "OK"
         except MySQLdb.IntegrityError:
-            abort(400, "Doh! Device doesnt exist")
+            bottle.abort(400, "Doh! Device doesnt exist")
         except urllib2.URLError:
-            abort(400, "failed to store image from source, check the url")
+            bottle.abort(400, "failed to store image from source, check the url")
     else:
-        abort(400, "Doh! Device ID was not found") # lookup the device function
+        bottle.abort(400, "Doh! Device ID was not found") # lookup the device function
 
 
-@get('/getpicture')
+@RESTApp.get('/getpicture')
 def getPicture():
-    image_id = request.params.get('id')
+    image_id = bottle.request.params.get('id')
 
     if HomerHelper.idCheck('Images', image_id):  # images IDs are unique so return only one image
         try:
@@ -391,14 +389,14 @@ def getPicture():
             return row['image']
 
         except MySQLdb.IntegrityError:
-            abort(400, "Doh! Device doesnt exist")
+            bottle.abort(400, "Doh! Device doesnt exist")
     else:
-        abort(400, "Doh! Image ID was not found")
+        bottle.abort(400, "Doh! Image ID was not found")
 
 
-@get('/getlocation') # used to add a new device to the system
+@RESTApp.get('/getlocation') # used to add a new device to the system
 def getlocation():
-    user_id = request.params.get('id')
+    user_id = bottle.request.params.get('id')
 
     if HomerHelper.idCheck('Users', user_id):
         try:
@@ -410,15 +408,15 @@ def getlocation():
             return json.dumps(user_location)
 
         except MySQLdb.IntegrityError:
-            abort(400, "Doh! User doesnt exist")
+            bottle.abort(400, "Doh! User doesnt exist")
 
     else:
-        abort(400, "Doh! User ID was not found")
+        bottle.abort(400, "Doh! User ID was not found")
 
-@post('/setlocation')  # used to add a new device to the system
+@RESTApp.post('/setlocation')  # used to add a new device to the system
 def setLocation():
-    user_id = request.params.get('id')
-    user_location = request.params.get('location')
+    user_id = bottle.request.params.get('id')
+    user_location = bottle.request.params.get('location')
 
     if HomerHelper.userIdCheck(con, user_id):
         user_name = HomerHelper.getUserName(con, user_id)
@@ -431,16 +429,16 @@ def setLocation():
             return "OK"
 
         except MySQLdb.IntegrityError:
-            abort(400, "Doh! User doesn't exist")
+            bottle.abort(400, "Doh! User doesn't exist")
     else:
-        abort(400, "Doh! User ID was not found")
+        bottle.abort(400, "Doh! User ID was not found")
 
 
-@post('/setcolor')  # used to add a new device to the system
+@RESTApp.post('/setcolor')  # used to add a new device to the system
 def setColor():
-    device_id = request.params.get('id')
-    device_color = request.params.get('color')
-    device_state = request.params.get('mode')
+    device_id = bottle.request.params.get('id')
+    device_color = bottle.request.params.get('color')
+    device_state = bottle.request.params.get('mode')
 
     if HomerHelper.idCheck('Devices', device_id):  # validate the ID
         device_name = HomerHelper.getDeviceName(con, device_id)
@@ -453,7 +451,7 @@ def setColor():
                 sql_update += "= %s  WHERE id = %s"
                 db.query(sql_update, (device_state, device_id))
             except MySQLdb.IntegrityError:
-                abort(400, "Doh! Device doesnt exist")
+                bottle.abort(400, "Doh! Device doesnt exist")
 
             color_location = HomerHelper.lookupDeviceAttribute(con, device_function, 'Color')
             if color_location is not None:
@@ -462,11 +460,11 @@ def setColor():
                     sql_update += "= %s  WHERE id = %s"
                     db.query(sql_update, (device_color, device_id))
                 except MySQLdb.IntegrityError:
-                    abort(400, "Doh! Device doesnt exist")
+                    bottle.abort(400, "Doh! Device doesnt exist")
             else:
-                abort(400, "Device does not have color attribute")
+                bottle.abort(400, "Device does not have color attribute")
         else:
-            abort(400, "Device does not have mode attribute")
+            bottle.abort(400, "Device does not have mode attribute")
 
         t = threading.Thread(target=DeviceComunication.sendDeviceColor, args=(device_id, device_color, device_state))
         t.start()
@@ -474,11 +472,11 @@ def setColor():
         HomerHelper.insert_history(device_name, device_id, history_event)
         return "OK"
     else:
-        abort(400, "Doh! Device ID was not found")
+        bottle.abort(400, "Doh! Device ID was not found")
 
-@get('/getcolor')  # used to add a new device to the system
+@RESTApp.get('/getcolor')  # used to add a new device to the system
 def getColor():
-    device_id = request.params.get('id')
+    device_id = bottle.request.params.get('id')
 
     if HomerHelper.idCheck('Devices', device_id):
         device_function = HomerHelper.getDeviceFunction(con, device_id)
@@ -503,86 +501,10 @@ def getColor():
                     return json.dumps(objects_list)
 
                 except MySQLdb.IntegrityError:
-                    abort(400, "Doh! Device doesnt exist")
+                    bottle.abort(400, "Doh! Device doesnt exist")
             else:
-                abort(400, "Device does not have color attribute")
+                bottle.abort(400, "Device does not have color attribute")
         else:
-            abort(400, "Device does not have mode attribute")
+            bottle.abort(400, "Device does not have mode attribute")
     else:
-        abort(400, "Doh! Device ID was not found")
-
-
-@route('/')
-@view('index')
-def index():
-    nav = HomerHelper.buildNav()
-
-    return template('default', rooms=nav['rooms'], functions=nav['functions'])
-
-@route('/static/:path#.+#', name='static')
-def static(path):
-    return static_file(path, root='static')
-
-
-
-
-@get('/viewLamp')
-def viewBrightness():
-    nav = HomerHelper.buildNav()
-    cur = db.query("SELECT * FROM `Devices` WHERE function = %s", 'lamp')
-    row = cur.fetchall()
-    brightness_location = HomerHelper.lookupDeviceAttribute(con, 'lamp', 'Brightness')
-    html = []  # parser for the information returned
-    for col in row:
-        devicename = col['name']
-        devicename = devicename.replace(" ", "_")
-        lampdevices = (col['name'], devicename, str((int(col[brightness_location])*100 )/255),col['id'])
-        html.append(lampdevices)
-    return template('brightness', devices=html, rooms=nav['rooms'], functions=nav['functions'])
-
-@get('/viewrooms')
-def viewRooms():
-    nav = HomerHelper.buildNav()
-    return template('rooms', rooms=nav['rooms'], functions=nav['functions'])
-
-
-@get('/viewhistory')
-def viewHistory():
-    nav = HomerHelper.buildNav()
-    #history_index = request.params.get('index')
-    entry_count = '25'
-    try:
-        sql_query = ("SELECT * FROM `History` ORDER BY `timestamp` DESC LIMIT %s;" % entry_count)
-        cur = db.query(sql_query, None)
-        row = cur.fetchall()  # device IDs unique so just get one record
-        history = []  # parser for the information returned
-        i = 0
-        for col in row:
-            i += 1
-            historyEntry = (
-                i ,
-                col['name'],
-                col["timestamp"].strftime("%c"),
-                col["event"],
-                col["id"],
-                )
-            history.append(historyEntry)
-        return template('history', entries=history, rooms=nav['rooms'], functions=nav['functions'])
-    except MySQLdb.IntegrityError:
-        abort(400, "Doh! Device doesnt exist")
-
-@get('/setup/adddevice')
-def viewaddDevice():
-    nav = HomerHelper.buildNav()
-    cur = db.query("SELECT * FROM `Devices` WHERE function = %s", 'lamp')
-    row = cur.fetchall()
-    brightness_location = HomerHelper.lookupDeviceAttribute(con, 'lamp', 'Brightness')
-    html = []  # parser for the information returned
-    for col in row:
-        devicename = col['name']
-        devicename = devicename.replace(" ", "_")
-        lampdevices = (col['name'], devicename, str((int(col[brightness_location])*100 )/255),col['id'])
-        print "viewbrightness"
-        print lampdevices
-        html.append(lampdevices)
-    return template('brightness', devices=html, rooms=nav['rooms'], functions=nav['functions'])
+        bottle.abort(400, "Doh! Device ID was not found")
