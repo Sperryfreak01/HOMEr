@@ -7,9 +7,11 @@ import logging
 import logging.handlers
 import bottle
 import WebInterface
+import Polling
 import HomerHelper
-
-
+from gevent import monkey,sleep,joinall,spawn
+import gevent
+monkey.patch_all()
 
 logging_level = 'DEBUG'
 
@@ -25,6 +27,7 @@ bottleApp = bottle.default_app()
 bottleApp.merge(RESTInterface.RESTApp)
 bottleApp.merge(WebInterface.WebApp)
 
-
 ########################################################################
-bottleApp.run(reloader=True, host='0.0.0.0', port=8081, debug=True)
+#gevent.spawn(Polling.HuePoll())
+Polling.PollingStart()
+bottleApp.run(reloader=True, host='0.0.0.0', port=8081, debug=True, server='gevent')

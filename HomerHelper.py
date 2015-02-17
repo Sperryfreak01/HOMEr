@@ -19,7 +19,10 @@ class DB:
 
   def query(self, sql, options):
     try:
-        print (sql, options)
+        if options is not None:
+            logging.debug(sql % options)
+        else:
+            logging.debug(sql)
         cursor = self.conn.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute(sql, options)
         #self.conn.commit()
@@ -43,7 +46,7 @@ def insert_history( device_name,device_id,event):
         #logger.warn("failed to insert values %d, %s", id, filename)
         #abort(400, "Doh! History was forgotten")
         print ("log entry exception")
-    cur = db.query("SELECT * from Devices where name = '" + device_name + "'", None)
+    cur = db.query("SELECT * from Devices where `name` = %s", device_name)
     rows = cur.fetchall()
 
     return()
@@ -105,6 +108,17 @@ def deviceIdCheck(id):
     else:
         return False
 
+def deviceGroupCheck(group):
+    #if re.match(r"[a-zA-Z0-9]{0,128}$", id) is None: # check that id only has letters and numbers
+    #    return False
+    #else:
+    cur =db.query("SELECT * FROM Devices WHERE `group` = %s", group)
+    row = cur.fetchone()
+    if row:
+        return True
+    else:
+        return False
+
 def userIdCheck(con, id):
     if re.match(r"[a-zA-Z0-9]{0,128}$", id) is None: # check that id only has letters and numbers
         return False
@@ -155,6 +169,15 @@ def getSettingValue(SettingName):
     row = cur.fetchone()
     value = row['value']
     return value
+
+def getIDofDeviceTypes(DeviceType):
+    cur = db.query('SELECT `id` FROM Devices WHERE type = %s', DeviceType)
+    rows = cur.fetchall()
+    device_ids = []
+    for row in rows:
+        device_id = row["id"]
+        device_ids.append(device_id)
+    return device_ids
 
 def lookupDeviceAttribute(function, attr_name):
     try:

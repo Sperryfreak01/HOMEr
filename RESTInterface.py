@@ -13,6 +13,7 @@ import Notifications
 import DeviceComunication
 import logging
 #import WebInterface
+import gevent
 
 RESTApp = bottle.Bottle()
 
@@ -232,42 +233,82 @@ def setBrightness():
     #MANDATORY FIELDS FROM REQUEST
     #DEVICE ID AS id
     #STATE TO ASSIGN TO DEVICE AS state
-
     device_id = bottle.request.params.get('id')
     brightness = bottle.request.params.get('brightness')
+    device_group = bottle.request.params.get('group')
 
-    if HomerHelper.idCheck('Devices', device_id):  # validate the ID
-        device_function = HomerHelper.getDeviceFunction(con, device_id)
-        brightness_location = HomerHelper.lookupDeviceAttribute(device_function, 'Brightness')
-        if brightness_location is not None:
+    if device_group is None:
+        if HomerHelper.idCheck('Devices', device_id):  # validate the ID
+            device_function = HomerHelper.getDeviceFunction(con, device_id)
+            brightness_location = HomerHelper.lookupDeviceAttribute(device_function, 'Brightness')
+            if brightness_location is not None:
+                try:
+                    sql_update = "UPDATE `Devices` SET %s " % brightness_location  # write it the same column in devices
+                    sql_update += "= %s  WHERE id = %s"
+                    db.query(sql_update, (brightness, device_id))
+                    #con.commit()
+
+                    device_name = HomerHelper.getDeviceName(con, device_id)
+                    device_type = HomerHelper.getDeviceType(con, device_id)
+                    DeviceComunication.sendDeviceBrightness(device_id, device_type, brightness)
+                    history_event = "set brightness to: " + brightness
+                    HomerHelper.insert_history(device_name, device_id, history_event)
+
+
+                    d = collections.OrderedDict()
+                    d['name'] = device_name
+                    d['brightness'] = brightness
+
+                    return json.dumps(d)
+
+                except MySQLdb.IntegrityError:
+                    bottle.abort(400, "Doh! Device doesnt exist")
+            else:
+                bottle.abort(400, "Device does not have brightness attribute")
+        else:
+            bottle.abort(400, "Doh! Device ID was not found")
+    else:
+        if HomerHelper.deviceGroupCheck(device_group):  # validate the group
             try:
-                sql_update = "UPDATE `Devices` SET %s " % brightness_location  # write it the same column in devices
-                sql_update += "= %s  WHERE id = %s"
-                db.query(sql_update, (brightness, device_id))
-                #con.commit()
+                sql_query = "SELECT `id` FROM Devices WHERE `group` = %s"  #get a list of device IDs from the group
+                cur = db.query(sql_query, device_group)
+                row = cur.fetchall()
 
-                device_name = HomerHelper.getDeviceName(con, device_id)
-                device_type = HomerHelper.getDeviceType(con, device_id)
-                DeviceComunication.sendDeviceBrightness(device_id, device_type, brightness)
-                history_event = "set brightness to: " + brightness
-                HomerHelper.insert_history(device_name, device_id, history_event)
-
-
+                objects_list = []
                 d = collections.OrderedDict()
-                d['name'] = device_name
-                d['brightness'] = brightness
 
-                return json.dumps(d)
+                for device in row:
+                    device_id = device['id']
+                    print device_id
+                    device_function = HomerHelper.getDeviceFunction(con, device_id)
+                    brightness_location = HomerHelper.lookupDeviceAttribute(device_function, 'Brightness')
+                    if brightness_location is not None:
+                        try:
+                            sql_update = "UPDATE `Devices` SET %s " % brightness_location  # write it the same column in devices
+                            sql_update += "= %s  WHERE id = %s"
+                            db.query(sql_update, (brightness, device_id))
 
+                            device_name = HomerHelper.getDeviceName(con, device_id)
+                            device_type = HomerHelper.getDeviceType(con, device_id)
+                            DeviceComunication.sendDeviceBrightness(device_id, device_type, brightness)
+                            history_event = "set brightness to: " + brightness
+                            HomerHelper.insert_history(device_name, device_id, history_event)
+
+                            d = collections.OrderedDict()
+                            d['name'] = device_name
+                            d['brightness'] = brightness
+                            objects_list.append(d)
+
+                            print objects_list
+
+                        except MySQLdb.IntegrityError:
+                            bottle.abort(400, "Something went horribly wrong, data loaded from DB was bad...uh oh")
+
+                return json.dumps(objects_list)
 
 
             except MySQLdb.IntegrityError:
-                bottle.abort(400, "Doh! Device doesnt exist")
-        else:
-            bottle.abort(400, "Device does not have brightness attribute")
-    else:
-        bottle.abort(400, "Doh! Device ID was not found")
-
+                    bottle.abort(400, "No Devices in the group: %s" % device_group)
 
 @RESTApp.get('/getbrightness')  # used to add a new device to the system
 def getBrightness():
