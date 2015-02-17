@@ -6,8 +6,10 @@ import urlparse
 import json
 from phue import Bridge
 from HomerHelper import getDeviceName
-
 import logging
+import threading
+import gevent
+from gevent import Greenlet
 
 logger = logging.getLogger(__name__)
 
@@ -35,11 +37,11 @@ def sendDeviceBrightness(device_id, device_type, brightness):
         name = getDeviceName(None, device_id)
         logging.debug("HUE brightness being set to " + brightness)
         if int(brightness) == 0:
-            b.set_light(name, 'on', False)
-            print "off"
+             Greenlet.spawn(b.set_light,name, 'on', False)
+
         else:
-            b.set_light(name, 'on', True)
-            b.set_light(name, 'bri', int(brightness))
+            Greenlet.spawn(b.set_light, name, 'on', True)
+            Greenlet.spawn(b.set_light, name, 'bri', int(brightness))
 
     elif device_type == "spark":
         # url = SPARK_API
@@ -104,3 +106,8 @@ def sendSparkCommand(url, payload):
     except urllib2.HTTPError as e:
         raise SparkError(e)
 
+def getHueBrightness(device_id):
+    light = b.get_light(int(device_id),'bri')
+    logging.debug('HUE device id is ' + device_id)
+    logging.debug('HUE brightneess is ' + str(light))
+    return light
