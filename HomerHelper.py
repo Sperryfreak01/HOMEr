@@ -51,7 +51,7 @@ def insert_history( device_name,device_id,event):
 
     return()
 
-def deviceExsists(con, id):
+def deviceExsists(id):
     device_id = ""
     with con:
         print(id)
@@ -66,7 +66,7 @@ def deviceExsists(con, id):
     else:
         return (True)
 
-def getDeviceName(con, id):
+def getDeviceName(id):
     cur = db.query("SELECT `name` FROM Devices WHERE id = %s", id)
 
     row = cur.fetchall()
@@ -77,7 +77,7 @@ def getDeviceName(con, id):
     else:
         return device_name
 
-def getDeviceType(con, id):
+def getDeviceType(id):
     cur = db.query("SELECT `type` FROM Devices WHERE id = %s", id)
     row = cur.fetchall()
     for col in row:
@@ -87,7 +87,7 @@ def getDeviceType(con, id):
     else:
         return device_type
 
-def getDeviceFunction(con, id):
+def getDeviceFunction(id):
     cur = db.query("SELECT `function` FROM Devices WHERE id = %s", id)
     row = cur.fetchall()
     for col in row:
@@ -196,6 +196,29 @@ def lookupDeviceAttribute(function, attr_name):
     except MySQLdb.IntegrityError:
             return None
 
+def updateDeviceAttribute(device_id, value, value_name):
+
+    try:
+        sql_querry = "SELECT * from `Devices` where `id` = %s"
+        cur = db.query(sql_querry, device_id)
+        details = cur.fetchone()
+
+        device_name = details['name']
+        device_function = details['function']
+        device_type = details['type']
+
+        value_location = lookupDeviceAttribute(device_function,value_name)
+
+        sql_update = "UPDATE `Devices` SET %s " % value_location  # write it the same column in devices
+        sql_update += "= %s  WHERE id = %s"
+        db.query(sql_update, (value, device_id))
+
+        history_event = "set %s to: %s" % (value_name, value)
+        insert_history(device_name, device_id, history_event)
+
+    except MySQLdb.IntegrityError:
+        logger.warn("Unable to update device id's %s, %s attribute to %s" % (device_id, value_name, value))
+
 def hex2rgb(hex):
     if hex is not None:
         red = str(int(hex[0:2],16))    # grabs the chars that are for each color and splits them
@@ -234,7 +257,17 @@ def buildNav():
         functionlist = (col['type'], functionname)
         functions.append(functionlist)
 
-    return {'webroot':webroot, 'rooms':rooms, 'functions':functions}
+    cur = db.query("SELECT * FROM `Settingslist`",None)
+    row = cur.fetchall()
+
+    settings = []  # parser for the information returned
+    for col in row:
+        settingsname = col['name']
+        settingsname = settingsname.replace(" ", "%20")
+        settingslist = (col['name'], settingsname)
+        settings.append(settingslist)
+
+    return {'webroot': webroot, 'rooms': rooms, 'functions': functions, 'settings': settings}
 
 
 

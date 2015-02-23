@@ -35,6 +35,13 @@
                         %for function in functions:
                         <li><a href="{{webroot}}view{{function[1]}}">{{function[0]}} </a></li>
                         %end
+                    </ul>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        %for setting in settings:
+                        <li><a href="{{webroot}}setting/{{setting[1]}}">{{setting[0]}} </a></li>
+                        %end
 
                     </ul>
                 </li>

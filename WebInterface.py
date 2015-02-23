@@ -15,7 +15,13 @@ WebApp = bottle.Bottle()
 @bottle.view('index')
 def index():
     nav = HomerHelper.buildNav()
-    return bottle.template('default', webroot=nav['webroot'], rooms=nav['rooms'], functions=nav['functions'])
+    cur = db.query("SELECT * FROM `Users`", None)
+    row = cur.fetchall()
+    users = []
+    for col in row:
+        userdata = (col['name'], col['location'])
+        users.append(userdata)
+    return bottle.template('default', nav, users= users)
 
 @WebApp.route('/static/:path#.+#', name='static')
 def static(path):
@@ -33,7 +39,7 @@ def viewBrightness():
         devicename = devicename.replace(" ", "_")
         lampdevices = (col['name'], devicename, str((int(col[brightness_location])*100 )/255),col['id'])
         html.append(lampdevices)
-    return bottle.template('brightness', devices=html, webroot=nav['webroot'], rooms=nav['rooms'], functions=nav['functions'])
+    return bottle.template('brightness', nav, devices=html)
 
 @WebApp.get('/room/<roomname>')
 def viewRooms(roomname):
@@ -57,7 +63,7 @@ def viewRooms(roomname):
     print 'html'
     print html
 
-    return bottle.template('rooms', lamps=html['Lamp'], webroot=nav['webroot'], rooms=nav['rooms'], functions=nav['functions'])
+    return bottle.template('rooms', nav, lamps=html['Lamp'])
 
 @WebApp.get('/viewhistory')
 def viewHistory():
