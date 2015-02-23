@@ -27,6 +27,10 @@ def index():
 def static(path):
     return bottle.static_file(path, root='static')
 
+@WebApp.get('/favicon.ico')
+def get_favicon():
+    return server_static('favicon.ico')
+
 @WebApp.get('/viewLamp')
 def viewBrightness():
     nav = HomerHelper.buildNav()

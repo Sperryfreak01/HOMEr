@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="static/favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>HOMEr Home Automation</title>
 
     <!-- Bootstrap core CSS -->
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
