@@ -1,7 +1,7 @@
 __author__ = 'matt'
 
 import bottle
-import MySQLdb
+import pymysql
 import HomerHelper
 import logging
 
@@ -29,7 +29,7 @@ def static(path):
 
 @WebApp.get('/favicon.ico')
 def get_favicon():
-    return server_static('favicon.ico')
+    return bottle.static_file('favicon.ico', root='./static/')
 
 @WebApp.get('/viewLamp')
 def viewBrightness():

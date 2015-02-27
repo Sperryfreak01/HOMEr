@@ -2,7 +2,7 @@
 
 __author__ = 'matt'
 
-import MySQLdb
+import pymysql
 import re
 import logging
 
@@ -14,7 +14,7 @@ class DB:
   conn = None
 
   def connect(self):
-    self.conn = MySQLdb.connect('192.168.2.1', 'HOMEr', 'HOMEr', 'HOMEr')
+    self.conn = pymysql.connect('192.168.2.1', 'HOMEr', 'HOMEr', 'HOMEr')
     self.conn.autocommit(True)
 
   def query(self, sql, options):
@@ -23,12 +23,12 @@ class DB:
             logging.debug(sql % options)
         else:
             logging.debug(sql)
-        cursor = self.conn.cursor(MySQLdb.cursors.DictCursor)
+        cursor = self.conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute(sql, options)
         #self.conn.commit()
-    except (AttributeError, MySQLdb.OperationalError):
+    except (AttributeError, pymysql.OperationalError):
         self.connect()
-        cursor = self.conn.cursor(MySQLdb.cursors.DictCursor)
+        cursor = self.conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute(sql, options)
         #self.conn.commit()
     return cursor

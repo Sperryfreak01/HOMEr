@@ -1,7 +1,7 @@
 __author__ = 'matt'
 
 import bottle
-import MySQLdb
+import pymysql
 import collections
 import json
 import urllib
@@ -12,14 +12,13 @@ import HomerHelper
 import Notifications
 import DeviceComunication
 import logging
-#import WebInterface
 import gevent
 
 RESTApp = bottle.Bottle()
 
 logger = logging.getLogger(__name__)
 
-con = MySQLdb.connect('192.168.2.1', 'HOMEr', 'HOMEr', 'HOMEr')
+con = pymysql.connect('192.168.2.1', 'HOMEr', 'HOMEr', 'HOMEr')
 
 IMP_API = "https://agent.electricimp.com/"
 SPARK_API = "https://api.spark.io/v1/"
