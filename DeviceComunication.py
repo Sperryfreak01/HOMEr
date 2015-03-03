@@ -34,8 +34,8 @@ def sendDeviceBrightness(device_id, device_type, brightness):
         urllib.urlopen(IMP_API + device_id + "?setbrightness= " + brightness)
 
     elif device_type == "hue":
-        name = getDeviceName(None, device_id)
-        logging.debug("HUE brightness being set to " + brightness)
+        name = getDeviceName(device_id)
+        logging.debug("HUE brightness being set to " + str(brightness))
         if int(brightness) == 0:
              Greenlet.spawn(b.set_light,name, 'on', False)
 
@@ -107,7 +107,11 @@ def sendSparkCommand(url, payload):
         raise SparkError(e)
 
 def getHueBrightness(device_id):
-    light = b.get_light(int(device_id),'bri')
+    light_disabled = b.get_light(int(device_id), 'on')
+    if light_disabled is False:
+        light = 0
+    else:
+        light = b.get_light(int(device_id),'bri')
     logging.debug('HUE device id is ' + device_id)
     logging.debug('HUE brightneess is ' + str(light))
     return light

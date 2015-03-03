@@ -22,16 +22,24 @@ def HuePoll():
         for id in hue_ids:
             hue_brightness = DeviceComunication.getHueBrightness(id)
             brightness_location = HomerHelper.lookupDeviceAttribute("lamp", 'Brightness')
+
             if brightness_location is not None:
-                try:
-                    sql_querry = "SELECT `%s`" % brightness_location
-                    sql_querry += " FROM `Devices` WHERE id = %s"   # write it the same column in devices
-                    cur = HomerHelper.db.query(sql_querry, ( id))
-                    db_brightness = cur.fetchone()
-                    if hue_brightness is not db_brightness:
-                        RESTInterface.setBrightness(True,id,hue_brightness)
-                except Exception as e:
-                    logger.warn("while trying to fetch hue brightness error occured: " + str(e))
+                #try:
+                sql_querry = "SELECT `%s`" % brightness_location
+                sql_querry += " FROM `Devices` WHERE id = %s"   # write it the same column in devices
+                cur = HomerHelper.db.query(sql_querry, id)
+                db_brightness = cur.fetchone()
+
+                for key in db_brightness.keys():
+                    db_brightness = db_brightness[key]
+
+                if int(hue_brightness) != int(db_brightness):
+                    HomerHelper.updateDeviceAttribute(id, hue_brightness, 'Brightness')
+
+                #except:
+                #    logger.warn("while trying to fetch hue brightness error occured")
             else:
                 logger.warn("while looking up brightness attribute for hue device db returned none")
         time.sleep(polling_rate)
+
+

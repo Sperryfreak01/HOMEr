@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="static/favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>HOMEr Home Automation</title>
 
     <!-- Bootstrap core CSS -->
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
@@ -26,15 +26,52 @@
     <![endif]-->
   </head>
 
-  <body>
+<body>
 
-     %include nav rooms=rooms, functions=functions
-
+    %include nav rooms=rooms, functions=functions, settings=settings
     <div class="container">
+        <div class="panel-group col-xs-12" id="Weatherpanel">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion">
+                          Current Weather
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                            <div class="col-xs-1"></div>
+                                <iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=33.677662&lon=-117.674959"> </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    </div><!-- /.container -->
 
-
+        <div class="panel-group col-xs-6" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion">
+                          Users
+                        </a>
+                    </h4>
+                </div>
+                <div id="Userscollapse" class="panel">
+                    <div class="panel-body">
+                        <div class="col-xs-10">
+                            %for user in users:
+                            <div class="row">
+                                <li><b>{{user[0]}} is at {{user[1]}}</b></li>
+                            </div>
+                            %end
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
