@@ -1,7 +1,8 @@
 __author__ = 'matt'
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
+import sys
+import gevent.monkey; gevent.monkey.patch_all()
 import RESTInterface
 import logging
 import logging.handlers
@@ -10,8 +11,6 @@ import WebInterface
 import Polling
 import HomerHelper
 from gevent import monkey,sleep,joinall,spawn
-import gevent
-monkey.patch_all()
 
 logging_level = 'DEBUG'
 
