@@ -73,7 +73,7 @@ def getHistory():
     history_index = bottle.request.params.get('index')
     entry_count = bottle.request.params.get('count')
 
-    #if HomerHelper.idCheck(con, 'Devices', device_id):
+    #if HomerHelper.idCheck('Devices', device_id):
     try:
         sql_query = ("SELECT * FROM `History` ORDER BY `timestamp` DESC LIMIT %s;" % entry_count)
         #print sql_query
@@ -102,7 +102,7 @@ def removeDevice():
     device_id = bottle.request.forms.get('id')
 
     if HomerHelper.idCheck('Devices', device_id):  #validate the device ID
-        device_name = HomerHelper.getDeviceName(con, device_id)
+        device_name = HomerHelper.getDeviceName(device_id)
         try:
             db.query("DELETE FROM Devices WHERE id = %s", device_id)
             HomerHelper.insert_history(device_name, device_id, "device removed")
@@ -182,7 +182,7 @@ def removeUser():
     user_id = bottle.request.forms.get('id')
 
     if HomerHelper.idCheck('Users', user_id):  #validate the device ID
-        user_name = HomerHelper.getUserName(con, user_id)
+        user_name = HomerHelper.getUserName(user_id)
         try:
             db.query("DELETE FROM Users WHERE id = %s", user_id)
             #con.commit()
@@ -238,7 +238,7 @@ def setBrightness():
 
     if device_group is None:
         if HomerHelper.idCheck('Devices', device_id):  # validate the ID
-            device_function = HomerHelper.getDeviceFunction(con, device_id)
+            device_function = HomerHelper.getDeviceFunction(device_id)
             brightness_location = HomerHelper.lookupDeviceAttribute(device_function, 'Brightness')
             if brightness_location is not None:
                 try:
@@ -247,8 +247,8 @@ def setBrightness():
                     db.query(sql_update, (brightness, device_id))
                     #con.commit()
 
-                    device_name = HomerHelper.getDeviceName(con, device_id)
-                    device_type = HomerHelper.getDeviceType(con, device_id)
+                    device_name = HomerHelper.getDeviceName(device_id)
+                    device_type = HomerHelper.getDeviceType(device_id)
                     DeviceComunication.sendDeviceBrightness(device_id, device_type, brightness)
                     history_event = "set brightness to: " + brightness
                     HomerHelper.insert_history(device_name, device_id, history_event)
@@ -279,7 +279,7 @@ def setBrightness():
                 for device in row:
                     device_id = device['id']
                     print device_id
-                    device_function = HomerHelper.getDeviceFunction(con, device_id)
+                    device_function = HomerHelper.getDeviceFunction(device_id)
                     brightness_location = HomerHelper.lookupDeviceAttribute(device_function, 'Brightness')
                     if brightness_location is not None:
                         try:
@@ -287,8 +287,8 @@ def setBrightness():
                             sql_update += "= %s  WHERE id = %s"
                             db.query(sql_update, (brightness, device_id))
 
-                            device_name = HomerHelper.getDeviceName(con, device_id)
-                            device_type = HomerHelper.getDeviceType(con, device_id)
+                            device_name = HomerHelper.getDeviceName(device_id)
+                            device_type = HomerHelper.getDeviceType(device_id)
                             DeviceComunication.sendDeviceBrightness(device_id, device_type, brightness)
                             history_event = "set brightness to: " + brightness
                             HomerHelper.insert_history(device_name, device_id, history_event)
@@ -314,8 +314,8 @@ def getBrightness():
     device_id = bottle.request.params.get('id')
 
     if HomerHelper.idCheck('Devices', device_id):
-        device_function = HomerHelper.getDeviceFunction(con, device_id)
-        brightness_location = HomerHelper.lookupDeviceAttribute(con, device_function, 'Brightness')
+        device_function = HomerHelper.getDeviceFunction(device_id)
+        brightness_location = HomerHelper.lookupDeviceAttribute(device_function, 'Brightness')
         if brightness_location is not None:   #"SELECT `value1` FROM Devices WHERE id = %s"
             try:
                 sql_query = "SELECT %s FROM Devices " % brightness_location  # write it the same column in devices
@@ -342,8 +342,8 @@ def setState():
     device_state = bottle.request.params.get('state')  # get state to assign
 
     if HomerHelper.idCheck('Devices', device_id):  # validate the ID
-        device_function = HomerHelper.getDeviceFunction(con, device_id)
-        state_location = HomerHelper.lookupDeviceAttribute(con, device_function, 'State')
+        device_function = HomerHelper.getDeviceFunction(device_id)
+        state_location = HomerHelper.lookupDeviceAttribute(device_function, 'State')
         if state_location is not None:
             try:
                 sql_update = "UPDATE `Devices` SET %s " % state_location  # write it the same column in devices
@@ -351,8 +351,8 @@ def setState():
                 db.query(sql_update, (device_state, device_id))
 
                 #call state.action or scene here.  TBD
-                device_name = HomerHelper.getDeviceName(con, device_id)  # lookup the name, needed for history
-                device_type = HomerHelper.getDeviceType(con, device_id)  # lookup the device type needed for history
+                device_name = HomerHelper.getDeviceName(device_id)  # lookup the name, needed for history
+                device_type = HomerHelper.getDeviceType(device_id)  # lookup the device type needed for history
                 history_event = "set state to: " + device_state
                 HomerHelper.insert_history(device_name, device_id, history_event)
                 return "OK"
@@ -372,8 +372,8 @@ def getState():
     device_id = bottle.request.params.get('id')
 
     if HomerHelper.idCheck('Devices', device_id):
-        device_function = HomerHelper.getDeviceFunction(con, device_id)
-        state_location = HomerHelper.lookupDeviceAttribute(con, device_function, 'State')
+        device_function = HomerHelper.getDeviceFunction(device_id)
+        state_location = HomerHelper.lookupDeviceAttribute(device_function, 'State')
         if state_location is not None:   #"SELECT `value1` FROM Devices WHERE id = %s"
             try:
                 sql_query = "SELECT %s FROM Devices " % state_location  # write it the same column in devices
@@ -403,7 +403,7 @@ def savePicture():
             sql_insert = 'INSERT INTO `Images`(`device_id`, `image`) VALUES (%s, %s)'
             db.query(sql_insert, (device_id, file))
 
-            device_name = HomerHelper.getDeviceName(con, device_id)  # lookup the name, needed for history
+            device_name = HomerHelper.getDeviceName(device_id)  # lookup the name, needed for history
             history_event = "stored picture from  " + picture_location
             HomerHelper.insert_history(device_name, device_id, history_event)
 
@@ -458,8 +458,8 @@ def setLocation():
     user_id = bottle.request.params.get('id')
     user_location = bottle.request.params.get('location')
 
-    if HomerHelper.userIdCheck(con, user_id):
-        user_name = HomerHelper.getUserName(con, user_id)
+    if HomerHelper.userIdCheck(user_id):
+        user_name = HomerHelper.getUserName(user_id)
 
         try:
             sql_update = "UPDATE `Users` SET `Location`= %s  WHERE ID = %s"
@@ -481,10 +481,10 @@ def setColor():
     device_state = bottle.request.params.get('mode')
 
     if HomerHelper.idCheck('Devices', device_id):  # validate the ID
-        device_name = HomerHelper.getDeviceName(con, device_id)
-        device_type = HomerHelper.getDeviceType(con, device_id)
-        device_function = HomerHelper.getDeviceFunction(con, device_id)
-        state_location = HomerHelper.lookupDeviceAttribute(con, device_function, 'State')
+        device_name = HomerHelper.getDeviceName(device_id)
+        device_type = HomerHelper.getDeviceType(device_id)
+        device_function = HomerHelper.getDeviceFunction(device_id)
+        state_location = HomerHelper.lookupDeviceAttribute(device_function, 'State')
         if state_location is not None:
             try:
                 sql_update = "UPDATE `Devices` SET %s " % state_location  # write it the same column in devices
@@ -493,7 +493,7 @@ def setColor():
             except MySQLdb.IntegrityError:
                 bottle.abort(400, "Doh! Device doesnt exist")
 
-            color_location = HomerHelper.lookupDeviceAttribute(con, device_function, 'Color')
+            color_location = HomerHelper.lookupDeviceAttribute(device_function, 'Color')
             if color_location is not None:
                 try:
                     sql_update = "UPDATE `Devices` SET %s " % color_location  # write it the same column in devices
@@ -519,9 +519,9 @@ def getColor():
     device_id = bottle.request.params.get('id')
 
     if HomerHelper.idCheck('Devices', device_id):
-        device_function = HomerHelper.getDeviceFunction(con, device_id)
-        state_location = HomerHelper.lookupDeviceAttribute(con, device_function, 'State')
-        color_location = HomerHelper.lookupDeviceAttribute(con, device_function, 'Color')
+        device_function = HomerHelper.getDeviceFunction(device_id)
+        state_location = HomerHelper.lookupDeviceAttribute(device_function, 'State')
+        color_location = HomerHelper.lookupDeviceAttribute(device_function, 'Color')
         if state_location is not None:
             if color_location is not None:
                 try:

@@ -13,10 +13,20 @@
     <!-- Bootstrap core CSS -->
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- CSS -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/animate.min.css" rel="stylesheet">
+    <link href="static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/form.css" rel="stylesheet">
+    <link href="static/css/calendar.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/icons.css" rel="stylesheet">
+    <link href="static/css/generics.css" rel="stylesheet">
+
     <!-- Custom styles for this template -->
-    <link href="static/css/HOMEr.css" rel="stylesheet">
-    <link href="static/css/bootstrap-slider.css" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <!--<link href="static/css/HOMEr.css" rel="stylesheet"> -->
+    <!--<link href="static/css/bootstrap-slider.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"> -->
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -25,9 +35,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
-<body>
-
+<body id="skin-blur-violate">
     %include nav rooms=rooms, functions=functions, settings=settings
     <div class="container">
         <div class="panel-group col-xs-12" id="Weatherpanel">

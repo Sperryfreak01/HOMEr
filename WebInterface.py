@@ -21,7 +21,7 @@ def index():
     for col in row:
         userdata = (col['name'], col['location'])
         users.append(userdata)
-    return bottle.template('default', nav, users= users)
+    return bottle.template('SinglePage', nav, users= users)
 
 @WebApp.route('/static/:path#.+#', name='static')
 def static(path):

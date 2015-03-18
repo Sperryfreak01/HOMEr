@@ -68,10 +68,8 @@ def deviceExsists(id):
 
 def getDeviceName(id):
     cur = db.query("SELECT `name` FROM Devices WHERE id = %s", id)
-
-    row = cur.fetchall()
-    for col in row:
-        device_name = col["name"]
+    row = cur.fetchone()
+    device_name = row["name"]
     if device_name is None:
         return ""
     else:
@@ -167,6 +165,7 @@ def getUserName(con, id):
 def getSettingValue(SettingName):
     cur = db.query('SELECT `value` FROM Settings WHERE name = %s', SettingName)
     row = cur.fetchone()
+    print row
     value = row['value']
     return value
 

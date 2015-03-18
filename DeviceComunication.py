@@ -5,7 +5,7 @@ import urllib2
 import urlparse
 import json
 from phue import Bridge
-from HomerHelper import getDeviceName
+import HomerHelper
 import logging
 import threading
 import gevent
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 IMP_API = "https://agent.electricimp.com/"
 SPARK_API = "https://api.spark.io/v1/"
-spark_token = 'e8a5241dee80316554e4f72c516ecf3ff26e15f6'
+spark_token = 'a606c819f4b0b99921a2b12b391f3297b0923b7a'
 
 
 b = Bridge("Philips-hue.mattlovett.com", config_file_path = "./HOMEr_hue")
@@ -34,7 +34,7 @@ def sendDeviceBrightness(device_id, device_type, brightness):
         urllib.urlopen(IMP_API + device_id + "?setbrightness= " + brightness)
 
     elif device_type == "hue":
-        name = getDeviceName(device_id)
+        name = HomerHelper.getDeviceName(device_id)
         logging.debug("HUE brightness being set to " + str(brightness))
         if int(brightness) == 0:
              Greenlet.spawn(b.set_light,name, 'on', False)
@@ -71,7 +71,7 @@ class SparkError(Exception): pass
 
 
 def sendDeviceColor(device_id, color_hex, lighting_mode):
-    color_rgb = hex2rgb(color_hex)
+    color_rgb = HomerHelper.hex2rgb(color_hex)
 
     payload = {
         'access_token' : spark_token,

@@ -13,13 +13,22 @@
               <!-- Bootstrap core CSS -->
         <link href="static/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this template -->
 
-        <!-- Custom styles for this template -->
-        <link href="static/css/HOMEr.css" rel="stylesheet">
-        <link href="static/css/bootstrap-slider.css" rel="stylesheet">
         <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
         <link href="static/css/toastr.css" rel="stylesheet">
         <link href="static/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <!-- CSS -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/animate.min.css" rel="stylesheet">
+    <link href="static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/form.css" rel="stylesheet">
+    <link href="static/css/calendar.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/icons.css" rel="stylesheet">
+    <link href="static/css/generics.css" rel="stylesheet">
 
 
 
