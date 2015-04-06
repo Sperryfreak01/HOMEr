@@ -14,7 +14,7 @@ class DB:
   conn = None
 
   def connect(self):
-    self.conn = pymysql.connect('192.168.2.1', 'HOMEr', 'HOMEr', 'HOMEr')
+    self.conn = pymysql.connect('localhost', 'HOMEr', 'HOMEr', 'HOMEr')
     self.conn.autocommit(True)
 
   def query(self, sql, options):
@@ -145,7 +145,6 @@ def idCheck(id_type, id):
 def roomCheck(name):
     cur = db.query('SELECT * FROM Rooms WHERE `name` = %s', name)
     row = cur.fetchall()
-    print row
     if row:
         return True
     else:
@@ -165,7 +164,6 @@ def getUserName(con, id):
 def getSettingValue(SettingName):
     cur = db.query('SELECT `value` FROM Settings WHERE name = %s', SettingName)
     row = cur.fetchone()
-    print row
     value = row['value']
     return value
 

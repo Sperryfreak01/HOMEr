@@ -11,6 +11,10 @@ logger = logging.getLogger(__name__)
 WebApp = bottle.Bottle()
 
 
+@WebApp.error(404)
+def error404(error):
+    return "shit"
+
 @WebApp.route('/')
 @bottle.view('index')
 def index():
@@ -21,10 +25,11 @@ def index():
     for col in row:
         userdata = (col['name'], col['location'])
         users.append(userdata)
-    return bottle.template('SinglePage', nav, users= users)
+    return bottle.template('Home', nav, users= users)
 
 @WebApp.route('/static/:path#.+#', name='static')
 def static(path):
+    print path
     return bottle.static_file(path, root='static')
 
 @WebApp.get('/favicon.ico')
@@ -43,7 +48,7 @@ def viewBrightness():
         devicename = devicename.replace(" ", "_")
         lampdevices = (col['name'], devicename, str((int(col[brightness_location])*100 )/255),col['id'])
         html.append(lampdevices)
-    return bottle.template('brightness', nav, devices=html)
+    return bottle.template('lamp', nav, devices=html)
 
 @WebApp.get('/room/<roomname>')
 def viewRooms(roomname):
@@ -73,26 +78,31 @@ def viewRooms(roomname):
 def viewHistory():
     nav = HomerHelper.buildNav()
     #history_index = request.params.get('index')
-    entry_count = '25'
-    try:
-        sql_query = ("SELECT * FROM `History` ORDER BY `timestamp` DESC LIMIT %s;" % entry_count)
-        cur = db.query(sql_query, None)
-        row = cur.fetchall()  # device IDs unique so just get one record
-        history = []  # parser for the information returned
-        i = 0
-        for col in row:
-            i += 1
-            historyEntry = (
-                i ,
-                col['name'],
-                col["timestamp"].strftime("%c"),
-                col["event"],
-                col["id"],
-                )
-            history.append(historyEntry)
-        return bottle.template('history', entries=history, webroot=nav['webroot'], rooms=nav['rooms'], functions=nav['functions'])
-    except MySQLdb.IntegrityError:
-        abort(400, "Doh! Device doesnt exist")
+    history_index = 1
+    entry_count = 25
+    details = {}
+    details['range_min'] = ((history_index - 1) * entry_count) + 1
+    details['range_max'] = history_index * entry_count
+
+    sql_query = ("SELECT * FROM `History` WHERE `EventNumber` BETWEEN %s AND %s ORDER BY `EventNumber` DESC")
+    cur = db.query(sql_query, (details['range_min'], details['range_max']) )
+    row = cur.fetchall()  # device IDs unique so just get one record
+    history = []  # parser for the information returned
+    i = 0
+    for col in row:
+        i += 1
+        historyEntry = (
+            i ,
+            col['name'],
+            col["timestamp"].strftime("%c"),
+            col["event"],
+            col["id"],
+            )
+        history.append(historyEntry)
+
+
+    return bottle.template('History', nav, entries=history, details=details)
+
 
 @WebApp.get('/setup/adddevice')
 def viewaddDevice():

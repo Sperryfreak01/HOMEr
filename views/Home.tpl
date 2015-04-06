@@ -18,7 +18,8 @@
         <link href="/static/css/calendar.css" rel="stylesheet">
         <link href="/static/css/style.css" rel="stylesheet">
         <link href="/static/css/icons.css" rel="stylesheet">
-        <link href="/static/css/generics.css" rel="stylesheet">
+
+
     </head>
     <body id="skin-blur-violate">
 
@@ -160,7 +161,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a class="sa-side-page" href="">
+                        <a class="sa-side-room" href="#">
                             <span class="menu-item">Rooms</span>
                         </a>
                         <ul class="list-unstyled menu-item">
@@ -171,7 +172,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a class="sa-side-page" href="">
+                        <a class="sa-side-page" href="#">
                             <span class="menu-item">Devices</span>
                         </a>
                         <ul class="list-unstyled menu-item">
@@ -182,82 +183,26 @@
                     </li>
 
                     <li>
-                        <a class="sa-side-Lamps" href=".html">
-                            <span class="menu-item">Typography</span>
+                        <a class="sa-side-users" href=".html">
+                            <span class="menu-item">Users</span>
                         </a>
                     </li>
                     <li>
-                        <a class="sa-side-widget" href="content-widgets.html">
-                            <span class="menu-item">Widgets</span>
+                        <a class="sa-side-history" href="viewhistory">
+                            <span class="menu-item">History</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="sa-side-table" href="tables.html">
-                            <span class="menu-item">Tables</span>
-                        </a>
-                    </li>
+
                     <li class="dropdown">
-                        <a class="sa-side-form" href="">
-                            <span class="menu-item">Form</span>
+                        <a class="sa-side-settings" href="#">
+                            <span class="menu-item">Settings</span>
                         </a>
                         <ul class="list-unstyled menu-item">
-                            <li><a href="form-elements.html">Basic Form Elements</a></li>
-                            <li><a href="form-components.html">Form Components</a></li>
-                            <li><a href="form-examples.html">Form Examples</a></li>
-                            <li><a href="form-validation.html">Form Validation</a></li>
+                            <li><a href="#">User Settings</a></li>
+                            <li><a href="#">Device Settings</a></li>
+                            <li><a href="#">System Settings</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a class="sa-side-ui" href="">
-                            <span class="menu-item">User Interface</span>
-                        </a>
-                        <ul class="list-unstyled menu-item">
-                            <li><a href="buttons.html">Buttons</a></li>
-                            <li><a href="labels.html">Labels</a></li>
-                            <li><a href="images-icons.html">Images &amp; Icons</a></li>
-                            <li><a href="alerts.html">Alerts</a></li>
-                            <li><a href="media.html">Media</a></li>
-                            <li><a href="components.html">Components</a></li>
-                            <li><a href="other-components.html">Others</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="sa-side-photos" href="">
-                            <span class="menu-item">PHOTO GALLERY</span>
-                        </a>
-                        <ul class="list-unstyled menu-item">
-                            <li><a href="photo-gallery.html">Google Images like</a></li>
-                            <li><a href="photo-gallery-alt.html">Photo Gallery - 2</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sa-side-chart" href="charts.html">
-                            <span class="menu-item">Charts</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="sa-side-folder" href="file-manager.html">
-                            <span class="menu-item">File Manager</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="sa-side-calendar" href="calendar.html">
-                            <span class="menu-item">Calendar</span>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="sa-side-page" href="">
-                            <span class="menu-item">Pages</span>
-                        </a>
-                        <ul class="list-unstyled menu-item">
-                            <li><a href="list-view.html">List View</a></li>
-                            <li><a href="profile-page.html">Profile Page</a></li>
-                            <li><a href="messages.html">Messages</a></li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="404.html">404 Error</a></li>
-                        </ul>
-                    </li>
-                </ul>
 
             </aside>
 
@@ -275,7 +220,7 @@
                         <div class="overflow" style="height: 254px">
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/1.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/1.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">Nadin Jackson - 2 Hours ago</small><br>
@@ -284,7 +229,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/2.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/2.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">David Villa - 5 Hours ago</small><br>
@@ -293,7 +238,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/3.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/3.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">Harris worgon - On 15/12/2013</small><br>
@@ -302,7 +247,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/4.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/4.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">Mitch Bradberry - On 14/12/2013</small><br>
@@ -311,7 +256,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/1.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/1.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">Nadin Jackson - On 15/12/2013</small><br>
@@ -320,7 +265,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/2.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/2.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">David Villa - On 16/12/2013</small><br>
@@ -329,7 +274,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/3.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/3.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">Harris worgon - On 17/12/2013</small><br>
@@ -338,7 +283,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/4.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/4.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">Mitch Bradberry - On 18/12/2013</small><br>
@@ -347,7 +292,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/5.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/5.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">Wendy Mitchell - On 19/12/2013</small><br>
@@ -371,7 +316,7 @@
                         <div class="overflow" style="height: 254px">
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/1.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/1.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">Nadin Jackson - 2 Hours ago</small><br>
@@ -380,7 +325,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/2.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/2.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">David Villa - 5 Hours ago</small><br>
@@ -389,7 +334,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/3.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/3.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">Harris worgon - On 15/12/2013</small><br>
@@ -398,7 +343,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/4.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/4.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">Mitch Bradberry - On 14/12/2013</small><br>
@@ -407,7 +352,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/1.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/1.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">Nadin Jackson - On 15/12/2013</small><br>
@@ -416,7 +361,7 @@
                             </div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img width="40" src="img/profile-pics/2.jpg" alt="">
+                                    <img width="40" src="static/img/profile-pics/2.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <small class="text-muted">David Villa - On 16/12/2013</small><br>
@@ -442,27 +387,27 @@
                 <!-- Shortcuts -->
                 <div class="block-area shortcut-area">
                     <a class="shortcut tile" href="">
-                        <img src="img/shortcuts/money.png" alt="">
+                        <img src="static/img/shortcuts/money.png" alt="">
                         <small class="t-overflow">Purchases</small>
                     </a>
                     <a class="shortcut tile" href="">
-                        <img src="img/shortcuts/twitter.png" alt="">
+                        <img src="static/img/shortcuts/twitter.png" alt="">
                         <small class="t-overflow">Tweets</small>
                     </a>
                     <a class="shortcut tile" href="">
-                        <img src="img/shortcuts/calendar.png" alt="">
+                        <img src="static/img/shortcuts/calendar.png" alt="">
                         <small class="t-overflow">Calendar</small>
                     </a>
                     <a class="shortcut tile" href="">
-                        <img src="img/shortcuts/stats.png" alt="">
+                        <img src="static/img/shortcuts/stats.png" alt="">
                         <small class="t-overflow">Statistics</small>
                     </a>
                     <a class="shortcut tile" href="">
-                        <img src="img/shortcuts/connections.png" alt="">
+                        <img src="static/img/shortcuts/connections.png" alt="">
                         <small class="t-overflow">Connection</small>
                     </a>
                     <a class="shortcut tile" href="">
-                        <img src="img/shortcuts/reports.png" alt="">
+                        <img src="static/img/shortcuts/reports.png" alt="">
                         <small class="t-overflow">Reports</small>
                     </a>
                 </div>
@@ -616,7 +561,7 @@
                                         <div class="listview narrow">
                                             <div class="media p-l-5">
                                                 <div class="pull-left">
-                                                    <img width="40" src="img/profile-pics/1.jpg" alt="">
+                                                    <img width="40" src="static/img/profile-pics/1.jpg" alt="">
                                                 </div>
                                                 <div class="media-body">
                                                     <small class="text-muted">2 Hours ago by Adrien San</small><br/>
@@ -626,7 +571,7 @@
                                             </div>
                                             <div class="media p-l-5">
                                                 <div class="pull-left">
-                                                    <img width="40" src="img/profile-pics/2.jpg" alt="">
+                                                    <img width="40" src="static/img/profile-pics/2.jpg" alt="">
                                                 </div>
                                                 <div class="media-body">
                                                     <small class="text-muted">5 Hours ago by David Villa</small><br/>
@@ -636,7 +581,7 @@
                                             </div>
                                             <div class="media p-l-5">
                                                 <div class="pull-left">
-                                                    <img width="40" src="img/profile-pics/3.jpg" alt="">
+                                                    <img width="40" src="static/img/profile-pics/3.jpg" alt="">
                                                 </div>
                                                 <div class="media-body">
                                                     <small class="text-muted">On 15/12/2013 by Mitch bradberry</small><br/>
@@ -646,7 +591,7 @@
                                             </div>
                                             <div class="media p-l-5">
                                                 <div class="pull-left">
-                                                    <img width="40" src="img/profile-pics/4.jpg" alt="">
+                                                    <img width="40" src="static/img/profile-pics/4.jpg" alt="">
                                                 </div>
                                                 <div class="media-body">
                                                     <small class="text-muted">On 14/12/2013 by Mitch bradberry</small><br/>
@@ -656,7 +601,7 @@
                                             </div>
                                             <div class="media p-l-5">
                                                 <div class="pull-left">
-                                                    <img width="40" src="img/profile-pics/5.jpg" alt="">
+                                                    <img width="40" src="static/img/profile-pics/5.jpg" alt="">
                                                 </div>
                                                 <div class="media-body">
                                                     <small class="text-muted">On 13/12/2013 by Mitch bradberry</small><br/>
@@ -861,37 +806,37 @@
                     <div class="pull-left chat-list">
                         <div class="listview narrow">
                             <div class="media">
-                                <img class="pull-left" src="/static/img/profile-pics/1.jpg" width="30" alt="">
+                                <img class="pull-left" src="static/img/profile-pics/1.jpg" width="30" alt="">
                                 <div class="media-body p-t-5">
                                     Alex Bendit
                                 </div>
                             </div>
                             <div class="media">
-                                <img class="pull-left" src="/static/img/profile-pics/2.jpg" width="30" alt="">
+                                <img class="pull-left" src="static/img/profile-pics/2.jpg" width="30" alt="">
                                 <div class="media-body">
                                     <span class="t-overflow p-t-5">David Volla Watkinson</span>
                                 </div>
                             </div>
                             <div class="media">
-                                <img class="pull-left" src="/static/img/profile-pics/3.jpg" width="30" alt="">
+                                <img class="pull-left" src="static/img/profile-pics/3.jpg" width="30" alt="">
                                 <div class="media-body">
                                     <span class="t-overflow p-t-5">Mitchell Christein</span>
                                 </div>
                             </div>
                             <div class="media">
-                                <img class="pull-left" src="/static/img/profile-pics/4.jpg" width="30" alt="">
+                                <img class="pull-left" src="static/img/profile-pics/4.jpg" width="30" alt="">
                                 <div class="media-body">
                                     <span class="t-overflow p-t-5">Wayne Parnell</span>
                                 </div>
                             </div>
                             <div class="media">
-                                <img class="pull-left" src="/static/img/profile-pics/5.jpg" width="30" alt="">
+                                <img class="pull-left" src="static/img/profile-pics/5.jpg" width="30" alt="">
                                 <div class="media-body">
                                     <span class="t-overflow p-t-5">Melina April</span>
                                 </div>
                             </div>
                             <div class="media">
-                                <img class="pull-left" src="/static/img/profile-pics/6.jpg" width="30" alt="">
+                                <img class="pull-left" src="static/img/profile-pics/6.jpg" width="30" alt="">
                                 <div class="media-body">
                                     <span class="t-overflow p-t-5">Ford Harnson</span>
                                 </div>
@@ -910,7 +855,7 @@
 
                         <div class="chat-body">
                             <div class="media">
-                                <img class="pull-right" src="/static/img/profile-pics/1.jpg" width="30" alt="" />
+                                <img class="pull-right" src="static/img/profile-pics/1.jpg" width="30" alt="" />
                                 <div class="media-body pull-right">
                                     Hiiii<br/>
                                     How you doing bro?
@@ -919,7 +864,7 @@
                             </div>
 
                             <div class="media pull-left">
-                                <img class="pull-left" src="/static/img/profile-pics/2.jpg" width="30" alt="" />
+                                <img class="pull-left" src="static/img/profile-pics/2.jpg" width="30" alt="" />
                                 <div class="media-body">
                                     I'm doing well buddy. <br/>How do you do?
                                     <small>David - 9 Mins ago</small>
@@ -927,7 +872,7 @@
                             </div>
 
                             <div class="media pull-right">
-                                <img class="pull-right" src="/static/img/profile-pics/2.jpg" width="30" alt="" />
+                                <img class="pull-right" src="static/img/profile-pics/2.jpg" width="30" alt="" />
                                 <div class="media-body">
                                     I'm Fine bro <br/>Thank you for asking
                                     <small>Me - 8 Mins ago</small>
@@ -935,7 +880,7 @@
                             </div>
 
                             <div class="media pull-right">
-                                <img class="pull-right" src="/static/img/profile-pics/2.jpg" width="30" alt="" />
+                                <img class="pull-right" src="static/img/profile-pics/2.jpg" width="30" alt="" />
                                 <div class="media-body">
                                     Any idea for a hangout?
                                     <small>Me - 8 Mins ago</small>
@@ -963,31 +908,31 @@
                     <ul class="browsers">
                         <li>
                             <a href="https://www.google.com/intl/en/chrome/browser/">
-                                <img src="/static/img/browsers/chrome.png" alt="">
+                                <img src="static/img/browsers/chrome.png" alt="">
                                 <div>Google Chrome</div>
                             </a>
                         </li>
                         <li>
                             <a href="http://www.mozilla.org/en-US/firefox/new/">
-                                <img src="/static/img/browsers/firefox.png" alt="">
+                                <img src="static/img/browsers/firefox.png" alt="">
                                 <div>Mozilla Firefox</div>
                             </a>
                         </li>
                         <li>
                             <a href="http://www.opera.com/computer/windows">
-                                <img src="/static/img/browsers/opera.png" alt="">
+                                <img src="static/img/browsers/opera.png" alt="">
                                 <div>Opera</div>
                             </a>
                         </li>
                         <li>
                             <a href="http://safari.en.softonic.com/">
-                                <img src="/static/img/browsers/safari.png" alt="">
+                                <img src="static/img/browsers/safari.png" alt="">
                                 <div>Safari</div>
                             </a>
                         </li>
                         <li>
                             <a href="http://windows.microsoft.com/en-us/internet-explorer/downloads/ie-10/worldwide-languages">
-                                <img src="/static/img/browsers/ie.png" alt="">
+                                <img src="static/img/browsers/ie.png" alt="">
                                 <div>Internet Explorer(New)</div>
                             </a>
                         </li>
