@@ -5,33 +5,44 @@ __author__ = 'matt'
 import pymysql
 import re
 import logging
+import gevent
 
 logger = logging.getLogger(__name__)
 
 
 
 class DB:
-  conn = None
+    def greenquerry(self, sql, options):
+        g_querry = gevent.spawn(self.query, (sql, options))
+        while g_querry.ready():
+            gevent.sleep(0)
+        return g_querry.value()
 
-  def connect(self):
-    self.conn = pymysql.connect('localhost', 'HOMEr', 'HOMEr', 'HOMEr')
-    self.conn.autocommit(True)
 
-  def query(self, sql, options):
-    try:
-        if options is not None:
-            logging.debug(sql % options)
-        else:
-            logging.debug(sql)
-        cursor = self.conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(sql, options)
-        #self.conn.commit()
-    except (AttributeError, pymysql.OperationalError):
-        self.connect()
-        cursor = self.conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(sql, options)
-        #self.conn.commit()
-    return cursor
+    def query(self, sql, options):
+        try:
+            conn = pymysql.connect('localhost', 'HOMEr', 'HOMEr', 'HOMEr')
+            conn.autocommit(True)
+
+            if options is not None:
+                logging.debug(sql % options)
+            else:
+                logging.debug(sql)
+
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            cursor.execute(sql, options )
+            #self.conn.commit()
+
+        except (AttributeError, pymysql.OperationalError):
+            self.connect()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            cursor.execute(sql, options)
+            #self.conn.commit()
+
+        conn.close()
+        return cursor
+
+
 
 db = DB()
 
@@ -190,7 +201,7 @@ def lookupDeviceAttribute(function, attr_name):
             else:
                 logger.debug("Unable to find attribute for Device Type: %s" % function)
                 return None
-    except MySQLdb.IntegrityError:
+    except pymysql.IntegrityError:
             return None
 
 def updateDeviceAttribute(device_id, value, value_name):

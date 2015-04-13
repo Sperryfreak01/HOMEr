@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4a44a7a-6336-4044-b089-d538c98a261d" name="Default" comment="" />
+    <list default="true" id="f4a44a7a-6336-4044-b089-d538c98a261d" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/views/lamp.tpl" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HomerHelper.py" afterPath="$PROJECT_DIR$/HomerHelper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/brightness.tpl" afterPath="$PROJECT_DIR$/views/brightness.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/nav.tpl" afterPath="$PROJECT_DIR$/views/nav.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="HOMEr.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -25,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="WebInterface.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WebInterface.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebInterface.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36419752" vertical-offset="1281" max-vertical-offset="2268">
-              <caret line="81" column="20" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="20" />
+            <state vertical-scroll-proportion="-3.2058823" vertical-offset="521" max-vertical-offset="2268">
+              <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
               <folding>
                 <element signature="e#21#34#0" expanded="true" />
                 <marker date="1428297215742" expanded="true" signature="338:359" placeholder="SELECT * FRO..." />
@@ -44,46 +50,63 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="404.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/404.tpl">
+      <file leaf-file-name="RESTInterface.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RESTInterface.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="558">
-              <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1025" max-vertical-offset="9792">
+              <caret line="79" column="11" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lamp.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/lamp.tpl">
+      <file leaf-file-name="Lamp.tpl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/Lamp.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2538" max-vertical-offset="17766">
+            <state vertical-scroll-proportion="-32.666668" vertical-offset="4734" max-vertical-offset="6318">
+              <caret line="312" column="24" selection-start-line="312" selection-start-column="24" selection-end-line="312" selection-end-column="24" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#2;n#ul#1;n#header#0;n#div#2;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#3;n#ul#1;n#header#0;n#div#2;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HOMEr.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/HOMEr.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav.tpl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/nav.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7713249" vertical-offset="2401" max-vertical-offset="3834">
+              <caret line="157" column="55" selection-start-line="157" selection-start-column="55" selection-end-line="157" selection-end-column="55" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#2;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#4;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#li#2;n#ul#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-                <marker date="1427949707383" expanded="true" signature="51361:53402" placeholder="..." />
-                <marker date="1427949707383" expanded="true" signature="51641:53256" placeholder="..." />
-                <marker date="1427949707383" expanded="true" signature="51670:51958" placeholder="..." />
-                <marker date="1427949707383" expanded="true" signature="51756:51928" placeholder="..." />
-                <marker date="1427949707383" expanded="true" signature="51987:52273" placeholder="..." />
-                <marker date="1427949707383" expanded="true" signature="52068:52243" placeholder="..." />
-                <marker date="1427949707383" expanded="true" signature="52302:52572" placeholder="..." />
-                <marker date="1427949707383" expanded="true" signature="52379:52542" placeholder="..." />
-                <marker date="1427949707383" expanded="true" signature="52601:52866" placeholder="..." />
-                <marker date="1427949707383" expanded="true" signature="52671:52836" placeholder="..." />
-                <marker date="1427949707383" expanded="true" signature="52895:53230" placeholder="..." />
-                <marker date="1427949707383" expanded="true" signature="53023:53200" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="slider.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/slider.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="2556">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -91,25 +114,34 @@
       <file leaf-file-name="default.tpl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/default.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="1782">
-              <caret line="38" column="43" selection-start-line="38" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state vertical-scroll-proportion="-27.74074" vertical-offset="637" max-vertical-offset="1782">
+              <caret line="77" column="26" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/nav.tpl">
+      <file leaf-file-name="brightness.tpl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/brightness.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3211" max-vertical-offset="3834">
-              <caret line="207" column="0" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+            <state vertical-scroll-proportion="-65.74074" vertical-offset="5875" max-vertical-offset="8046">
+              <caret line="425" column="0" selection-start-line="425" selection-start-column="0" selection-end-line="425" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#2;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#4;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#2;n#ul#1;n#header#0;n#div#2;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#3;n#ul#1;n#header#0;n#div#2;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rooms.tpl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/rooms.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.0740743" vertical-offset="502" max-vertical-offset="1944">
+              <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -117,64 +149,30 @@
       <file leaf-file-name="HomerHelper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HomerHelper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.3235292" vertical-offset="521" max-vertical-offset="4932">
-              <caret line="41" column="11" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="11" />
+            <state vertical-scroll-proportion="-5.8235292" vertical-offset="54" max-vertical-offset="5166">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
-                <marker date="1427949236553" expanded="true" signature="940:1002" placeholder="INSERT INTO ..." />
-                <marker date="1427949236553" expanded="true" signature="1388:1425" placeholder="SELECT * fro..Devices..." />
-                <marker date="1427949236553" expanded="true" signature="1582:1615" placeholder="SELECT * FRO..Devices..." />
-                <marker date="1427949236553" expanded="true" signature="1824:1862" placeholder="SELECT `name..." />
-                <marker date="1427949236553" expanded="true" signature="2053:2091" placeholder="SELECT `type..." />
-                <marker date="1427949236553" expanded="true" signature="2310:2352" placeholder="SELECT `func..." />
-                <marker date="1427949236553" expanded="true" signature="2714:2747" placeholder="SELECT * FRO..Devices..." />
-                <marker date="1427949236553" expanded="true" signature="3025:3063" placeholder="SELECT * FRO..Devices..." />
-                <marker date="1427949236553" expanded="true" signature="3343:3374" placeholder="SELECT * FRO..Users..." />
-                <marker date="1427949236553" expanded="true" signature="3669:3686" placeholder="SELECT `id` ..." />
-                <marker date="1427949236553" expanded="true" signature="3964:3999" placeholder="SELECT * FRO..Rooms..." />
-                <marker date="1427949236553" expanded="true" signature="4146:4182" placeholder="SELECT `name..." />
-                <marker date="1427949236553" expanded="true" signature="4408:4450" placeholder="SELECT `valu..." />
-                <marker date="1427949236553" expanded="true" signature="4592:4630" placeholder="SELECT `id` ..." />
-                <marker date="1427949236553" expanded="true" signature="4883:4925" placeholder="SELECT * FRO..." />
-                <marker date="1427949236553" expanded="true" signature="5679:5716" placeholder="SELECT * fro..." />
-                <marker date="1427949236553" expanded="true" signature="7177:7198" placeholder="SELECT * FRO..." />
-                <marker date="1427949236553" expanded="true" signature="7480:7508" placeholder="SELECT * FRO..." />
-                <marker date="1427949236553" expanded="true" signature="7822:7850" placeholder="SELECT * FRO..." />
+                <element signature="e#79#93#0" expanded="true" />
+                <marker date="1428881110797" expanded="true" signature="1194:1256" placeholder="INSERT INTO ..." />
+                <marker date="1428881110797" expanded="true" signature="1642:1679" placeholder="SELECT * fro..Devices..." />
+                <marker date="1428881110797" expanded="true" signature="1836:1869" placeholder="SELECT * FRO..Devices..." />
+                <marker date="1428881110797" expanded="true" signature="2078:2116" placeholder="SELECT `name..." />
+                <marker date="1428881110797" expanded="true" signature="2307:2345" placeholder="SELECT `type..." />
+                <marker date="1428881110797" expanded="true" signature="2564:2606" placeholder="SELECT `func..." />
+                <marker date="1428881110797" expanded="true" signature="2968:3001" placeholder="SELECT * FRO..Devices..." />
+                <marker date="1428881110797" expanded="true" signature="3279:3317" placeholder="SELECT * FRO..Devices..." />
+                <marker date="1428881110797" expanded="true" signature="3597:3628" placeholder="SELECT * FRO..Users..." />
+                <marker date="1428881110797" expanded="true" signature="3923:3940" placeholder="SELECT `id` ..." />
+                <marker date="1428881110797" expanded="true" signature="4218:4253" placeholder="SELECT * FRO..Rooms..." />
+                <marker date="1428881110797" expanded="true" signature="4400:4436" placeholder="SELECT `name..." />
+                <marker date="1428881110797" expanded="true" signature="4662:4704" placeholder="SELECT `valu..." />
+                <marker date="1428881110797" expanded="true" signature="4846:4884" placeholder="SELECT `id` ..." />
+                <marker date="1428881110797" expanded="true" signature="5137:5179" placeholder="SELECT * FRO..." />
+                <marker date="1428881110797" expanded="true" signature="5933:5970" placeholder="SELECT * fro..." />
+                <marker date="1428881110797" expanded="true" signature="7431:7452" placeholder="SELECT * FRO..." />
+                <marker date="1428881110797" expanded="true" signature="7734:7762" placeholder="SELECT * FRO..." />
+                <marker date="1428881110797" expanded="true" signature="8076:8104" placeholder="SELECT * FRO..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="History.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/History.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="4986">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#2;n#ul#1;n#header#0;n#div#2;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#3;n#ul#1;n#header#0;n#div#2;n#section#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="icons.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/icons.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="3528">
-              <caret line="41" column="62" selection-start-line="41" selection-start-column="62" selection-end-line="41" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Home.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/Home.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3582" max-vertical-offset="17766">
-              <caret line="199" column="60" selection-start-line="199" selection-start-column="60" selection-end-line="199" selection-end-column="60" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -189,19 +187,20 @@
       <list>
         <option value="$PROJECT_DIR$/RESTInterface.py" />
         <option value="$PROJECT_DIR$/DeviceComunication.py" />
-        <option value="$PROJECT_DIR$/views/default.tpl" />
         <option value="$PROJECT_DIR$/views/Settings.tpl" />
-        <option value="$PROJECT_DIR$/views/brightness.tpl" />
         <option value="$PROJECT_DIR$/static/css/animate.min.css" />
         <option value="$PROJECT_DIR$/views/SinglePage.tpl" />
         <option value="$PROJECT_DIR$/static/css/icons.css" />
-        <option value="$PROJECT_DIR$/HomerHelper.py" />
-        <option value="$PROJECT_DIR$/views/lamp.tpl" />
         <option value="$PROJECT_DIR$/views/404.tpl" />
         <option value="$PROJECT_DIR$/views/Home.tpl" />
-        <option value="$PROJECT_DIR$/views/nav.tpl" />
         <option value="$PROJECT_DIR$/views/History.tpl" />
         <option value="$PROJECT_DIR$/WebInterface.py" />
+        <option value="$PROJECT_DIR$/views/nav.tpl" />
+        <option value="$PROJECT_DIR$/HomerHelper.py" />
+        <option value="$PROJECT_DIR$/views/default.tpl" />
+        <option value="$PROJECT_DIR$/views/brightness.tpl" />
+        <option value="$PROJECT_DIR$/static/js/jquery.min.js" />
+        <option value="$PROJECT_DIR$/views/lamp.tpl" />
       </list>
     </option>
   </component>
@@ -209,10 +208,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-290" />
-    <option name="y" value="104" />
-    <option name="width" value="1221" />
-    <option name="height" value="650" />
+    <option name="x" value="-1" />
+    <option name="y" value="27" />
+    <option name="width" value="1368" />
+    <option name="height" value="742" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -300,24 +299,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HOMEr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HOMEr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -556,11 +537,11 @@
     </servers>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-290" y="104" width="1221" height="650" extended-state="0" />
+    <frame x="-1" y="27" width="1368" height="742" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27563578" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24597365" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933104" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -649,34 +630,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/lamp.tpl">
+    <entry file="file://$PROJECT_DIR$/views/Lamp.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2538" max-vertical-offset="17766">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#2;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#4;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#li#2;n#ul#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <marker date="1427949707383" expanded="true" signature="51361:53402" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="51641:53256" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="51670:51958" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="51756:51928" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="51987:52273" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52068:52243" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52302:52572" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52379:52542" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52601:52866" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52671:52836" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52895:53230" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="53023:53200" placeholder="..." />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#2;n#ul#1;n#header#0;n#div#2;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#3;n#ul#1;n#header#0;n#div#2;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -708,25 +670,26 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1241" max-vertical-offset="4932">
           <caret line="89" column="24" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
           <folding>
-            <marker date="1427949236553" expanded="true" signature="940:1002" placeholder="INSERT INTO ..." />
-            <marker date="1427949236553" expanded="true" signature="1388:1425" placeholder="SELECT * fro..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="1582:1615" placeholder="SELECT * FRO..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="1824:1862" placeholder="SELECT `name..." />
-            <marker date="1427949236553" expanded="true" signature="2053:2091" placeholder="SELECT `type..." />
-            <marker date="1427949236553" expanded="true" signature="2310:2352" placeholder="SELECT `func..." />
-            <marker date="1427949236553" expanded="true" signature="2714:2747" placeholder="SELECT * FRO..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="3025:3063" placeholder="SELECT * FRO..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="3343:3374" placeholder="SELECT * FRO..Users..." />
-            <marker date="1427949236553" expanded="true" signature="3669:3686" placeholder="SELECT `id` ..." />
-            <marker date="1427949236553" expanded="true" signature="3964:3999" placeholder="SELECT * FRO..Rooms..." />
-            <marker date="1427949236553" expanded="true" signature="4146:4182" placeholder="SELECT `name..." />
-            <marker date="1427949236553" expanded="true" signature="4408:4450" placeholder="SELECT `valu..." />
-            <marker date="1427949236553" expanded="true" signature="4592:4630" placeholder="SELECT `id` ..." />
-            <marker date="1427949236553" expanded="true" signature="4883:4925" placeholder="SELECT * FRO..." />
-            <marker date="1427949236553" expanded="true" signature="5679:5716" placeholder="SELECT * fro..." />
-            <marker date="1427949236553" expanded="true" signature="7177:7198" placeholder="SELECT * FRO..." />
-            <marker date="1427949236553" expanded="true" signature="7480:7508" placeholder="SELECT * FRO..." />
-            <marker date="1427949236553" expanded="true" signature="7822:7850" placeholder="SELECT * FRO..." />
+            <element signature="e#79#93#0" expanded="true" />
+            <marker date="1428881110797" expanded="true" signature="1194:1256" placeholder="INSERT INTO ..." />
+            <marker date="1428881110797" expanded="true" signature="1642:1679" placeholder="SELECT * fro..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="1836:1869" placeholder="SELECT * FRO..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="2078:2116" placeholder="SELECT `name..." />
+            <marker date="1428881110797" expanded="true" signature="2307:2345" placeholder="SELECT `type..." />
+            <marker date="1428881110797" expanded="true" signature="2564:2606" placeholder="SELECT `func..." />
+            <marker date="1428881110797" expanded="true" signature="2968:3001" placeholder="SELECT * FRO..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="3279:3317" placeholder="SELECT * FRO..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="3597:3628" placeholder="SELECT * FRO..Users..." />
+            <marker date="1428881110797" expanded="true" signature="3923:3940" placeholder="SELECT `id` ..." />
+            <marker date="1428881110797" expanded="true" signature="4218:4253" placeholder="SELECT * FRO..Rooms..." />
+            <marker date="1428881110797" expanded="true" signature="4400:4436" placeholder="SELECT `name..." />
+            <marker date="1428881110797" expanded="true" signature="4662:4704" placeholder="SELECT `valu..." />
+            <marker date="1428881110797" expanded="true" signature="4846:4884" placeholder="SELECT `id` ..." />
+            <marker date="1428881110797" expanded="true" signature="5137:5179" placeholder="SELECT * FRO..." />
+            <marker date="1428881110797" expanded="true" signature="5933:5970" placeholder="SELECT * fro..." />
+            <marker date="1428881110797" expanded="true" signature="7431:7452" placeholder="SELECT * FRO..." />
+            <marker date="1428881110797" expanded="true" signature="7734:7762" placeholder="SELECT * FRO..." />
+            <marker date="1428881110797" expanded="true" signature="8076:8104" placeholder="SELECT * FRO..." />
           </folding>
         </state>
       </provider>
@@ -798,25 +761,26 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="2658" max-vertical-offset="4968">
           <caret line="167" column="13" selection-start-line="167" selection-start-column="13" selection-end-line="167" selection-end-column="13" />
           <folding>
-            <marker date="1427949236553" expanded="true" signature="940:1002" placeholder="INSERT INTO ..." />
-            <marker date="1427949236553" expanded="true" signature="1388:1425" placeholder="SELECT * fro..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="1582:1615" placeholder="SELECT * FRO..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="1824:1862" placeholder="SELECT `name..." />
-            <marker date="1427949236553" expanded="true" signature="2053:2091" placeholder="SELECT `type..." />
-            <marker date="1427949236553" expanded="true" signature="2310:2352" placeholder="SELECT `func..." />
-            <marker date="1427949236553" expanded="true" signature="2714:2747" placeholder="SELECT * FRO..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="3025:3063" placeholder="SELECT * FRO..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="3343:3374" placeholder="SELECT * FRO..Users..." />
-            <marker date="1427949236553" expanded="true" signature="3669:3686" placeholder="SELECT `id` ..." />
-            <marker date="1427949236553" expanded="true" signature="3964:3999" placeholder="SELECT * FRO..Rooms..." />
-            <marker date="1427949236553" expanded="true" signature="4146:4182" placeholder="SELECT `name..." />
-            <marker date="1427949236553" expanded="true" signature="4408:4450" placeholder="SELECT `valu..." />
-            <marker date="1427949236553" expanded="true" signature="4592:4630" placeholder="SELECT `id` ..." />
-            <marker date="1427949236553" expanded="true" signature="4883:4925" placeholder="SELECT * FRO..." />
-            <marker date="1427949236553" expanded="true" signature="5679:5716" placeholder="SELECT * fro..." />
-            <marker date="1427949236553" expanded="true" signature="7177:7198" placeholder="SELECT * FRO..." />
-            <marker date="1427949236553" expanded="true" signature="7480:7508" placeholder="SELECT * FRO..." />
-            <marker date="1427949236553" expanded="true" signature="7822:7850" placeholder="SELECT * FRO..." />
+            <element signature="e#79#93#0" expanded="true" />
+            <marker date="1428881110797" expanded="true" signature="1194:1256" placeholder="INSERT INTO ..." />
+            <marker date="1428881110797" expanded="true" signature="1642:1679" placeholder="SELECT * fro..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="1836:1869" placeholder="SELECT * FRO..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="2078:2116" placeholder="SELECT `name..." />
+            <marker date="1428881110797" expanded="true" signature="2307:2345" placeholder="SELECT `type..." />
+            <marker date="1428881110797" expanded="true" signature="2564:2606" placeholder="SELECT `func..." />
+            <marker date="1428881110797" expanded="true" signature="2968:3001" placeholder="SELECT * FRO..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="3279:3317" placeholder="SELECT * FRO..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="3597:3628" placeholder="SELECT * FRO..Users..." />
+            <marker date="1428881110797" expanded="true" signature="3923:3940" placeholder="SELECT `id` ..." />
+            <marker date="1428881110797" expanded="true" signature="4218:4253" placeholder="SELECT * FRO..Rooms..." />
+            <marker date="1428881110797" expanded="true" signature="4400:4436" placeholder="SELECT `name..." />
+            <marker date="1428881110797" expanded="true" signature="4662:4704" placeholder="SELECT `valu..." />
+            <marker date="1428881110797" expanded="true" signature="4846:4884" placeholder="SELECT `id` ..." />
+            <marker date="1428881110797" expanded="true" signature="5137:5179" placeholder="SELECT * FRO..." />
+            <marker date="1428881110797" expanded="true" signature="5933:5970" placeholder="SELECT * fro..." />
+            <marker date="1428881110797" expanded="true" signature="7431:7452" placeholder="SELECT * FRO..." />
+            <marker date="1428881110797" expanded="true" signature="7734:7762" placeholder="SELECT * FRO..." />
+            <marker date="1428881110797" expanded="true" signature="8076:8104" placeholder="SELECT * FRO..." />
           </folding>
         </state>
       </provider>
@@ -870,6 +834,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="828">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -877,6 +842,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="108">
           <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -891,6 +857,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="108">
           <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -898,27 +865,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="108">
           <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Polling.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0588236" vertical-offset="0" max-vertical-offset="918">
-          <caret line="2" column="3" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="666">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/brightness.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1096" max-vertical-offset="2034">
-          <caret line="76" column="51" selection-start-line="76" selection-start-column="48" selection-end-line="76" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -953,38 +899,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/lamp.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2538" max-vertical-offset="17766">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#2;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#4;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#li#2;n#ul#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#4;n#section#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <marker date="1427949707383" expanded="true" signature="51361:53402" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="51641:53256" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="51670:51958" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="51756:51928" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="51987:52273" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52068:52243" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52302:52572" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52379:52542" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52601:52866" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52671:52836" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="52895:53230" placeholder="..." />
-            <marker date="1427949707383" expanded="true" signature="53023:53200" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/Home.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3582" max-vertical-offset="17766">
@@ -993,81 +907,133 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/nav.tpl">
+    <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3211" max-vertical-offset="3834">
-          <caret line="207" column="0" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#2;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#4;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/default.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="1782">
-          <caret line="38" column="43" selection-start-line="38" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="666">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/History.tpl">
+    <entry file="file://$PROJECT_DIR$/Polling.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="4986">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="918">
+          <caret line="14" column="14" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#2;n#ul#1;n#header#0;n#div#2;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#3;n#ul#1;n#header#0;n#div#2;n#section#0;n#!!top" expanded="true" />
+            <element signature="e#21#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HomerHelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8235292" vertical-offset="54" max-vertical-offset="5166">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#79#93#0" expanded="true" />
+            <marker date="1428881110797" expanded="true" signature="1194:1256" placeholder="INSERT INTO ..." />
+            <marker date="1428881110797" expanded="true" signature="1642:1679" placeholder="SELECT * fro..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="1836:1869" placeholder="SELECT * FRO..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="2078:2116" placeholder="SELECT `name..." />
+            <marker date="1428881110797" expanded="true" signature="2307:2345" placeholder="SELECT `type..." />
+            <marker date="1428881110797" expanded="true" signature="2564:2606" placeholder="SELECT `func..." />
+            <marker date="1428881110797" expanded="true" signature="2968:3001" placeholder="SELECT * FRO..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="3279:3317" placeholder="SELECT * FRO..Devices..." />
+            <marker date="1428881110797" expanded="true" signature="3597:3628" placeholder="SELECT * FRO..Users..." />
+            <marker date="1428881110797" expanded="true" signature="3923:3940" placeholder="SELECT `id` ..." />
+            <marker date="1428881110797" expanded="true" signature="4218:4253" placeholder="SELECT * FRO..Rooms..." />
+            <marker date="1428881110797" expanded="true" signature="4400:4436" placeholder="SELECT `name..." />
+            <marker date="1428881110797" expanded="true" signature="4662:4704" placeholder="SELECT `valu..." />
+            <marker date="1428881110797" expanded="true" signature="4846:4884" placeholder="SELECT `id` ..." />
+            <marker date="1428881110797" expanded="true" signature="5137:5179" placeholder="SELECT * FRO..." />
+            <marker date="1428881110797" expanded="true" signature="5933:5970" placeholder="SELECT * fro..." />
+            <marker date="1428881110797" expanded="true" signature="7431:7452" placeholder="SELECT * FRO..." />
+            <marker date="1428881110797" expanded="true" signature="7734:7762" placeholder="SELECT * FRO..." />
+            <marker date="1428881110797" expanded="true" signature="8076:8104" placeholder="SELECT * FRO..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RESTInterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33272058" vertical-offset="1025" max-vertical-offset="9792">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1025" max-vertical-offset="9792">
           <caret line="79" column="11" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HomerHelper.py">
+    <entry file="file://$PROJECT_DIR$/static/js/jquery.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3235292" vertical-offset="521" max-vertical-offset="4932">
-          <caret line="41" column="11" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.18685122" vertical-offset="0" max-vertical-offset="578">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding>
-            <marker date="1427949236553" expanded="true" signature="940:1002" placeholder="INSERT INTO ..." />
-            <marker date="1427949236553" expanded="true" signature="1388:1425" placeholder="SELECT * fro..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="1582:1615" placeholder="SELECT * FRO..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="1824:1862" placeholder="SELECT `name..." />
-            <marker date="1427949236553" expanded="true" signature="2053:2091" placeholder="SELECT `type..." />
-            <marker date="1427949236553" expanded="true" signature="2310:2352" placeholder="SELECT `func..." />
-            <marker date="1427949236553" expanded="true" signature="2714:2747" placeholder="SELECT * FRO..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="3025:3063" placeholder="SELECT * FRO..Devices..." />
-            <marker date="1427949236553" expanded="true" signature="3343:3374" placeholder="SELECT * FRO..Users..." />
-            <marker date="1427949236553" expanded="true" signature="3669:3686" placeholder="SELECT `id` ..." />
-            <marker date="1427949236553" expanded="true" signature="3964:3999" placeholder="SELECT * FRO..Rooms..." />
-            <marker date="1427949236553" expanded="true" signature="4146:4182" placeholder="SELECT `name..." />
-            <marker date="1427949236553" expanded="true" signature="4408:4450" placeholder="SELECT `valu..." />
-            <marker date="1427949236553" expanded="true" signature="4592:4630" placeholder="SELECT `id` ..." />
-            <marker date="1427949236553" expanded="true" signature="4883:4925" placeholder="SELECT * FRO..." />
-            <marker date="1427949236553" expanded="true" signature="5679:5716" placeholder="SELECT * fro..." />
-            <marker date="1427949236553" expanded="true" signature="7177:7198" placeholder="SELECT * FRO..." />
-            <marker date="1427949236553" expanded="true" signature="7480:7508" placeholder="SELECT * FRO..." />
-            <marker date="1427949236553" expanded="true" signature="7822:7850" placeholder="SELECT * FRO..." />
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="2556">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/default.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-27.74074" vertical-offset="637" max-vertical-offset="1782">
+          <caret line="77" column="26" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/brightness.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-65.74074" vertical-offset="5875" max-vertical-offset="8046">
+          <caret line="425" column="0" selection-start-line="425" selection-start-column="0" selection-end-line="425" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#2;n#ul#1;n#header#0;n#div#2;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#3;n#ul#1;n#header#0;n#div#2;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8685122" vertical-offset="1080" max-vertical-offset="40968">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/HOMEr.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="591">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/Lamp.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-32.666668" vertical-offset="4734" max-vertical-offset="6318">
+          <caret line="312" column="24" selection-start-line="312" selection-start-column="24" selection-end-line="312" selection-end-column="24" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#2;n#ul#1;n#header#0;n#div#2;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#3;n#ul#1;n#header#0;n#div#2;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebInterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36419752" vertical-offset="1281" max-vertical-offset="2268">
-          <caret line="81" column="20" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="20" />
+        <state vertical-scroll-proportion="-3.2058823" vertical-offset="521" max-vertical-offset="2268">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
           <folding>
             <element signature="e#21#34#0" expanded="true" />
             <marker date="1428297215742" expanded="true" signature="338:359" placeholder="SELECT * FRO..." />
@@ -1077,6 +1043,41 @@
             <marker date="1428297215742" expanded="true" signature="2661:2750" placeholder="SELECT * FRO..." />
             <marker date="1428297215742" expanded="true" signature="2661:2751" placeholder="SELECT * FRO..." />
             <marker date="1428297215742" expanded="true" signature="3398:3439" placeholder="SELECT * FRO..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/History.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0235934" vertical-offset="3924" max-vertical-offset="4986">
+          <caret line="3" column="52" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#2;n#ul#1;n#header#0;n#div#2;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#3;n#ul#1;n#header#0;n#div#2;n#section#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/rooms.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0740743" vertical-offset="502" max-vertical-offset="1944">
+          <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/nav.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7713249" vertical-offset="2401" max-vertical-offset="3834">
+          <caret line="157" column="55" selection-start-line="157" selection-start-column="55" selection-end-line="157" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#2;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#4;n#div#0;n#div#3;n#div#0;n#aside#0;n#section#0;n#body#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

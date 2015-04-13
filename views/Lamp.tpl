@@ -22,6 +22,8 @@
     <link href="static/css/style.css" rel="stylesheet">
     <link href="static/css/icons.css" rel="stylesheet">
     <link href="static/css/generics.css" rel="stylesheet">
+    <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet" >
+
 
     <!-- Custom styles for this template -->
     <!--<link href="static/css/HOMEr.css" rel="stylesheet"> -->
@@ -37,60 +39,7 @@
   </head>
 <body id="skin-blur-violate">
     %include nav rooms=rooms, functions=functions, settings=settings
-        <div class="container">
-            %for device in devices:
-            <div class="panel-group" id="accordion">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#{{device[1]}}collapse">
-                      {{device[0]}}
-                    </a>
-                  </h4>
-                </div>
-                <div id="{{device[1]}}collapse" class="panel-collapse collapse">
-                  <div class="panel-body">
-                      <div class="row">
-                          <div class=" col-md-7">
-                              <div class="row">
-                                <div class="col-xs-1"></div>
-                                <div class="col-xs-6 slider" id="{{device[1]}}" data-callback="{{device[1]}}-slider-result" data-value="{{device[2]}}" data-id="{{device[3]}}" data-webroot="{{webroot}}"></div>
-                              </div>
-                              <div class="row">
-                                <br>
-                                <div class="col-xs-1"></div>
-                                <div class="col-xs-6">
-                                    <button type="button" class="btn btn-primary btn-sm downbutton" id="{{device[1]}}downbutton">
-                                        <span class="glyphicon glyphicon-minus"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-sm upbutton" id="{{device[1]}}upbutton">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                    </button>
-                                    <b>&nbsp&nbsp&nbspCurrent Brightness: </b><span class="{{device[1]}}-slider-result">0</span>%
-                                </div>
-                              </div>
-                          </div>
-                          <div class=" col-md-5">
-                            <button type="button" class="btn btn-primary btn-lg offButton" id="{{device[1]}}offButton">
-                                <span class="fa fa-circle-o fa-2x"></span>
-                                <br>OFF
-                            </button>
-                            <button type="button" class="btn btn-primary btn-lg onButton" id="{{device[1]}}onButton">
-                                <span class="fa fa-sun-o fa-2x"></span>
-                                <br>ON
-                            </button>
-                            <button type="button" class="btn btn-primary btn-lg nightButton" id="{{device[1]}}  nightButton">
-                                <span class="fa fa-moon-o fa-2x"></span>
-                                <br>Night
-                            </button>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            %end
-        </div>
+
 <!-- Content -->
             <section id="content" class="container">
 
@@ -315,127 +264,82 @@
                         <div class="clearfix"></div>
                     </header>
 
-                    <div class="media">
-                        <input type="checkbox" class="pull-left list-check" value="">
-                        <div class="media-body">
-                            Per an error perpetua, fierent fastidii recteque ad pro. Mei id brute intellegam
-                            <div class="list-options">
-                                <button class="btn btn-sm">View</button>
-                                <button class="btn btn-sm">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-
                     %for device in devices:
                     <div class="media">
+                        <b>{{device[0]}}</b>
                         <div class="media-body">
-                            {{device[0]}} <b>&nbsp&nbsp&nbspCurrent Brightness: </b><span class="{{device[1]}}-slider-result">0</span>%
-
+                            <div class="row"><br></div>
                             <div class="clearfix"></div>
-                            <div class="attrs">Date Created: 09/06/1988</div>
-                            <div class="block attrs">Members: 78954</div>
-                            <div class="block attrs">Published: No</div>
+                            <div class="block attr">
+                                <div class="row">
+                                    <div class=" col-md-7">
+                                      <div class="row">
+                                        <div class="col-xs-1"></div>
+                                        <div class="col-xs-6 slider" id="{{device[1]}}" data-callback="{{device[1]}}-slider-result" data-value="{{device[2]}}" data-id="{{device[3]}}" data-webroot="{{webroot}}"></div>
+                                      </div>
+                                      <div class="row">
+                                        <br>
+                                        <div class="col-xs-1"></div>
+                                        <div class="col-xs-6">
+                                            <button type="button" class="btn btn-primary btn-sm downbutton" id="{{device[1]}}downbutton">
+                                                <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm upbutton" id="{{device[1]}}upbutton">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            <b>&nbsp&nbsp&nbspCurrent Brightness: </b><span class="{{device[1]}}-slider-result">0</span>%
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="list-options">
-                                <button class="btn btn-sm">View</button>
-                                <button class="btn btn-sm">Delete</button>
-                                <button type="button" class="btn btn-primary btn-sm downbutton" id="{{device[1]}}downbutton">
-                                        <span class="glyphicon glyphicon-minus"></span>
-                                    </button>
-                                <button type="button" class="btn btn-primary btn-sm upbutton" id="{{device[1]}}upbutton">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                    </button>
-                                    <b>&nbsp&nbsp&nbspCurrent Brightness: </b><span class="{{device[1]}}-slider-result">0</span>%
+                                <button type="button" class="btn btn-sm offButton" id="{{device[1]}}offButton">
+                                    <span class="fa fa-circle-o fa-2x"></span>
+                                    <br>OFF
+                                </button>
+                                <button type="button" class="btn btn-sm onButton" id="{{device[1]}}onButton">
+                                    <span class="fa fa-sun-o fa-2x"></span>
+                                    <br>ON
+                                </button>
+                                <button type="button" class="btn btn-sm nightButton" id="{{device[1]}}  nightButton">
+                                    <span class="fa fa-moon-o fa-2x"></span>
+                                    <br>Night
+                                </button>
                             </div>
                         </div>
                     </div>
-
-                    %for device in devices:
-            <div class="panel-group" id="accordion">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#{{device[1]}}collapse">
-                      {{device[0]}}
-                    </a>
-                  </h4>
-                </div>
-                <div id="{{device[1]}}collapse" class="panel-collapse collapse">
-                  <div class="panel-body">
-                      <div class="row">
-                          <div class=" col-md-7">
-                              <div class="row">
-                                <div class="col-xs-1"></div>
-                                <div class="col-xs-6 slider" id="{{device[1]}}" data-callback="{{device[1]}}-slider-result" data-value="{{device[2]}}" data-id="{{device[3]}}" data-webroot="{{webroot}}"></div>
-                              </div>
-                              <div class="row">
-                                <br>
-                                <div class="col-xs-1"></div>
-                                <div class="col-xs-6">
-                                    <button type="button" class="btn btn-primary btn-sm downbutton" id="{{device[1]}}downbutton">
-                                        <span class="glyphicon glyphicon-minus"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-sm upbutton" id="{{device[1]}}upbutton">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                    </button>
-                                    <b>&nbsp&nbsp&nbspCurrent Brightness: </b><span class="{{device[1]}}-slider-result">0</span>%
-                                </div>
-                              </div>
-                          </div>
-                          <div class=" col-md-5">
-                            <button type="button" class="btn btn-primary btn-lg offButton" id="{{device[1]}}offButton">
-                                <span class="fa fa-circle-o fa-2x"></span>
-                                <br>OFF
-                            </button>
-                            <button type="button" class="btn btn-primary btn-lg onButton" id="{{device[1]}}onButton">
-                                <span class="fa fa-sun-o fa-2x"></span>
-                                <br>ON
-                            </button>
-                            <button type="button" class="btn btn-primary btn-lg nightButton" id="{{device[1]}}  nightButton">
-                                <span class="fa fa-moon-o fa-2x"></span>
-                                <br>Night
-                            </button>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-
-                    <div class="media text-center">
-                        <ul class="pagination">
-                            <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-
+                    %end
             </section>
         </section>
 
         <!-- Javascript Libraries -->
         <!-- jQuery -->
-        <script src="js/jquery.min.js"></script> <!-- jQuery Library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <!-- jQuery Library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 
         <!-- Bootstrap -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="{{webroot}}static/js/bootstrap.min.js"></script>
 
         <!--  Form Related -->
-        <script src="js/icheck.js"></script> <!-- Custom Checkbox + Radio -->
+        <script src="{{webroot}}static/js/icheck.js"></script> <!-- Custom Checkbox + Radio -->
 
         <!-- UX -->
-        <script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
+        <script src="{{webroot}}static/js/scroll.min.js"></script> <!-- Custom Scrollbar -->
 
         <!-- Other -->
-        <script src="js/calendar.min.js"></script> <!-- Calendar -->
-        <script src="js/feeds.min.js"></script> <!-- News Feeds -->
+        <script src="{{webroot}}static/js/calendar.min.js"></script> <!-- Calendar -->
+        <script src="{{webroot}}static/js/feeds.min.js"></script> <!-- News Feeds -->
+        <script type='text/javascript' src="{{webroot}}static/js/toastr.js"></script>
+        <script type='text/javascript' src="{{webroot}}static/js/slider.js"></script>
 
 
         <!-- All JS functions -->
-        <script src="js/functions.js"></script>
+        <script src="{{webroot}}static/js/functions.js"></script>
+        <script type='text/javascript' src="{{webroot}}static/js/toastr.js"></script>
+        <script type='text/javascript' src="{{webroot}}static/js/slider.js"></script>
     </body>
 </html>

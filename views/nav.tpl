@@ -154,8 +154,8 @@
 
                 <!-- Side Menu -->
                 <ul class="list-unstyled side-menu">
-                    <li class="active">
-                        <a class="sa-side-home" href="index.html">
+                    <li>
+                        <a class="sa-side-home" href="/">
                             <span class="menu-item">Dashboard</span>
                         </a>
                     </li>
