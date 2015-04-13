@@ -5,14 +5,27 @@ import HomerHelper
 import time
 import RESTInterface
 import logging
-from gevent import Greenlet
+import gevent
 
 
 logger = logging.getLogger(__name__)
 
 def PollingStart():
     if HomerHelper.getSettingValue('hue_polling') == 'True':
-        Greenlet.spawn(HuePoll)
+        gevent.spawn(HuePoll)
+    if HomerHelper.getSettingValue('wifi_polling') == 'True':
+        gevent.spawn(WifiPoll)
+
+def WifiPoll():
+    logger.info("They see me pollin they hating, Wifi Device polling enabled")
+    polling_rate = int(HomerHelper.getSettingValue('hue_polling_rate'))
+    while True:
+        
+
+        time.sleep(polling_rate)
+
+
+
 
 def HuePoll():
     logger.info("They see me pollin they hating, Phillips hue polling enabled")

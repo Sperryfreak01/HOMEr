@@ -18,6 +18,8 @@
         <link href="/static/css/calendar.css" rel="stylesheet">
         <link href="/static/css/style.css" rel="stylesheet">
         <link href="/static/css/icons.css" rel="stylesheet">
+        <link href="static/css/toastr.css" rel="stylesheet">
+
 
 
     </head>

@@ -48,7 +48,7 @@ def viewBrightness():
         devicename = devicename.replace(" ", "_")
         lampdevices = (col['name'], devicename, str((int(col[brightness_location])*100 )/255),col['id'])
         html.append(lampdevices)
-    return bottle.template('lamp', nav, devices=html)
+    return bottle.template('Lamp', nav, devices=html)
 
 @WebApp.get('/room/<roomname>')
 def viewRooms(roomname):
