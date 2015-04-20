@@ -224,7 +224,7 @@ def updateDeviceAttribute(device_id, value, value_name):
         history_event = "set %s to: %s" % (value_name, value)
         insert_history(device_name, device_id, history_event)
 
-    except MySQLdb.IntegrityError:
+    except pymysql.IntegrityError:
         logger.warn("Unable to update device id's %s, %s attribute to %s" % (device_id, value_name, value))
 
 def hex2rgb(hex):

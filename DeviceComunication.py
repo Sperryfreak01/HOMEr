@@ -10,12 +10,20 @@ import logging
 import threading
 import gevent
 from gevent import Greenlet
+import urlparse
+import requests
+import json
+
 
 logger = logging.getLogger(__name__)
 
-IMP_API = "https://agent.electricimp.com/"
-SPARK_API = "https://api.spark.io/v1/"
-spark_token = 'a606c819f4b0b99921a2b12b391f3297b0923b7a'
+IMP_API = HomerHelper.getSettingValue('Imp_API_URL')
+SPARK_API = HomerHelper.getSettingValue('Spark_API_URL')
+
+
+
+spark_token = HomerHelper.getSettingValue('spark_token')
+
 
 
 b = Bridge("Philips-hue.mattlovett.com", config_file_path = "./HOMEr_hue")
@@ -115,3 +123,83 @@ def getHueBrightness(device_id):
     logging.debug('HUE device id is ' + device_id)
     logging.debug('HUE brightneess is ' + str(light))
     return light
+
+class MyQ(object):
+
+
+
+    def __init__(self):
+        self.MYQ_API = HomerHelper.getSettingValue('MyQ_API_URL')
+        self.MyQ_App_ID = HomerHelper.getSettingValue('MyQ_App_ID')
+        self.securityToken = self.authenticate()
+
+
+    def authenticate(self):
+        loginUrl = urlparse.urljoin(self.MYQ_API, "/Membership/ValidateUserWithCulture")
+        payload = {
+            'appId':self.MyQ_App_ID,
+            'securityToken':'null',
+            'username':HomerHelper.getSettingValue('MyQ_Username'),
+            'password':HomerHelper.getSettingValue('MyQ_Password'),
+            'culture':'en'
+        }
+        logging.debug('authenticating MyQ account')
+        r = requests.get(loginUrl, params=payload)
+        jsonData = json.loads(r.text)
+        errorMessage = str(jsonData['ErrorMessage'])
+
+        if not errorMessage:
+            return jsonData['SecurityToken']
+        else:
+            return None
+
+    def getDoorStatus(self, deviceId):
+        systeminfourl = urlparse.urljoin(self.MYQ_API, "/Device/getDeviceAttribute")
+        payload = {
+            'appId': self.MyQ_App_ID,
+            'devId': deviceId,
+            'name': 'doorstate',
+            'securityToken': self.securityToken}
+        r = requests.get(systeminfourl, params=payload)
+
+        if not r.json()['ErrorMessage']:
+            doorStatus = r.json()['AttributeValue']
+            if doorStatus == "1":
+                return "open"
+            elif doorStatus == "2":
+                return "closed"
+            elif doorStatus == "4":
+                return "opening"
+            elif doorStatus == "5":
+                return "closing"
+            else:
+                return "unknown"
+
+
+
+
+    def setDoorStatus(self, deviceId, doorState):
+        if doorState == 'open':
+            doorState = 1
+        elif doorState == 'closed':
+            doorState = 2
+        elif doorState == 'opening':
+            doorState = 4
+        elif doorState == 'closing':
+            doorState = 5
+        else:
+            raise ValueError('Invalid door state passed')
+
+        deviceSetUrl = urlparse.urljoin(MYQ_API, "/Device/setDeviceAttribute")
+        payload = {
+            'ApplicationId':MyQ_App_ID,
+            'SecurityToken':self.securityToken,
+            'DeviceId':deviceId,
+            'AttributeName':'desireddoorstate',
+            'AttributeValue':doorState
+        }
+
+        r = requests.put(deviceSetUrl, params=payload)
+        return 1
+
+
