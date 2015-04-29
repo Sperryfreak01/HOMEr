@@ -6,11 +6,13 @@ import time
 import RESTInterface
 import logging
 import gevent
+import astral
 
 
 logger = logging.getLogger(__name__)
 
 def PollingStart():
+    gevent.spawn(DailyHouseKeeping())
     if HomerHelper.getSettingValue('hue_polling') == 'True':
         gevent.spawn(HuePoll)
     if HomerHelper.getSettingValue('myQ_polling') == 'True':
@@ -43,5 +45,15 @@ def HuePoll():
             hue_brightness = DeviceComunication.getHueBrightness(id)
             HomerHelper.updateDeviceAttribute(id, hue_brightness, 'Brightness')
         time.sleep(polling_rate)
+
+def AlarmCheck():
+    pass
+
+def DailyHouseKeeping():
+    astral = astral.Astral()
+    while True:
+        logging.debug("performing daily housekeeping actions")
+        time.sleep(3600*24)
+    pass
 
 
