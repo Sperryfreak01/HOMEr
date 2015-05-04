@@ -1,6 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="MySQL - @192.168.2.1" uuid="1b930fcc-df0e-4dfa-9931-170963e01d9f">
-    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  <data-source name="MySQL - HOMEr@localhost" uuid="fa31b963-6f09-4f88-9f4e-246c4909dd6e">
+    <database-info product="MySQL" version="5.5.5-10.0.15-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="HOMEr"/>
+    <table name="Device_Types" schema="" catalog="HOMEr" type="TABLE">
+      <column name="type" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value1" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value2" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value3" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value4" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value5" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value6" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value7" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value8" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value9" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value10" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <index name="type" unique="true" columns="type"/>
+    </table>
+    <table name="Devices" schema="" catalog="HOMEr" type="TABLE">
+      <column name="name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="group" sqlType="CHAR" precision="64" scale="0" nullable="false" jdbcType="1"/>
+      <column name="id" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="function" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="location" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value1" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value2" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value3" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value4" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value5" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value6" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value7" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value8" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value9" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value10" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <index name="id" unique="true" columns="id"/>
+      <index name="group" unique="false" columns="group"/>
+    </table>
+    <table name="History" schema="" catalog="HOMEr" type="TABLE">
+      <column name="EventNumber" sqlType="MEDIUMINT UNSIGNED" precision="8" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="event" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="timestamp" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="EventNumber"/>
+    </table>
+    <table name="Images" schema="" catalog="HOMEr" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="device_id" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="image" sqlType="MEDIUMBLOB" precision="16777215" scale="0" nullable="false" jdbcType="-4"/>
+      <column name="timestamp" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="Rooms" schema="" catalog="HOMEr" type="TABLE">
+      <column name="name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="id" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <index name="id" unique="true" columns="id"/>
+    </table>
+    <table name="Scenes" schema="" catalog="HOMEr" type="TABLE">
+      <column name="scene_id" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="scene_name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="task1" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4"/>
+      <column name="task2" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4"/>
+      <column name="task3" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4"/>
+      <column name="task4" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4"/>
+      <column name="task5" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4"/>
+      <column name="task6" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4"/>
+      <column name="task7" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4"/>
+      <column name="task8" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4"/>
+      <column name="task9" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4"/>
+      <column name="task10" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="scene_id"/>
+    </table>
+    <table name="Settings" schema="" catalog="HOMEr" type="TABLE">
+      <column name="name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <index name="name" unique="true" columns="name"/>
+    </table>
+    <table name="Settingslist" schema="" catalog="HOMEr" type="TABLE">
+      <column name="name" sqlType="CHAR" precision="128" scale="0" nullable="false" jdbcType="1"/>
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <index name="id" unique="true" columns="id"/>
+    </table>
+    <table name="Tasks" schema="" catalog="HOMEr" type="TABLE">
+      <column name="task_id" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="task_name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="device_id" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value1" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value2" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value3" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value4" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value5" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value6" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value7" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value8" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value9" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="value10" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="task_id"/>
+      <index name="task_id" unique="true" columns="task_id"/>
+    </table>
+    <table name="Users" schema="" catalog="HOMEr" type="TABLE">
+      <column name="id" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="phone_number" sqlType="VARCHAR" precision="14" scale="0" nullable="false" jdbcType="12"/>
+      <column name="lat" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="lon" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="location" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <index name="id" unique="true" columns="id"/>
+    </table>
+    <table name="testt" schema="" catalog="HOMEr" type="TABLE">
+      <column name="est" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+    </table>
   </data-source>
 </component>

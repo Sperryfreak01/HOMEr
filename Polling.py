@@ -50,9 +50,14 @@ def AlarmCheck():
     pass
 
 def DailyHouseKeeping():
-    astral = astral.Astral()
+    street = HomerHelper.getSettingValue('StreetAddress')
+    city = HomerHelper.getSettingValue('City')
+    state = HomerHelper.getSettingValue('State')
     while True:
         logging.debug("performing daily housekeeping actions")
+        sun = HomerHelper.calcSunPosition(street, city, state)
+        HomerHelper.updateSettingValue('sunrise',sun['sunrise'])
+        HomerHelper.updateSettingValue('sunset',sun['sunset'])
         time.sleep(3600*24)
     pass
 

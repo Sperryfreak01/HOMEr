@@ -6,9 +6,10 @@ import pymysql
 import re
 import logging
 import gevent
+from astral import Astral,GoogleGeocoder,Location
+from datetime import date
 
 logger = logging.getLogger(__name__)
-
 
 
 class DB:
@@ -178,6 +179,11 @@ def getSettingValue(SettingName):
     value = row['value']
     return value
 
+def updateSettingValue(SettingName, NewValue):
+    sql_update = "UPDATE `Settings` SET value = %s WHERE name = %s"
+    db.query(sql_update, (NewValue, SettingName))
+    return
+
 def getIDofDeviceTypes(DeviceType):
     cur = db.query('SELECT `id` FROM Devices WHERE type = %s', DeviceType)
     rows = cur.fetchall()
@@ -189,7 +195,7 @@ def getIDofDeviceTypes(DeviceType):
 
 def lookupDeviceAttribute(function, attr_name):
     try:
-        sql_querry = "SELECT * FROM `Device_Types` WHERE type = %s"
+        sql_querry = "SELECT * FROM Device_Types WHERE type = %s"
         cur = db.query(sql_querry, function)
         rows = cur.fetchall()
         for row in rows:
@@ -207,7 +213,7 @@ def lookupDeviceAttribute(function, attr_name):
 def updateDeviceAttribute(device_id, value, value_name):
 
     try:
-        sql_querry = "SELECT * from `Devices` where `id` = %s"
+        sql_querry = "SELECT * from Devices where `id` = %s"
         cur = db.query(sql_querry, device_id)
         details = cur.fetchone()
 
@@ -277,5 +283,15 @@ def buildNav():
 
     return {'webroot': webroot, 'rooms': rooms, 'functions': functions, 'settings': settings}
 
+def calcSunPosition(street, city, state):
+    astro = Astral(GoogleGeocoder)
+    location = astro['%s %s %s' % (street, city, state)]
+    sun = location.sun(local=True, date=date.today())
+    return sun
 
-
+def calcTimeZone(street, city, state):
+    astro = Astral(GoogleGeocoder)
+    location = astro['%s %s %s' % (street, city, state)]
+    timezone = location.timezone
+    print timezone
+    return timezone

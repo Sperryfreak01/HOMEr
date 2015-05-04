@@ -9,8 +9,10 @@ import logging.handlers
 import bottle
 import WebInterface
 import Polling
+import Scheduler
 import HomerHelper
 from gevent import monkey,sleep,joinall,spawn
+
 
 logging_level = 'DEBUG'
 
@@ -21,6 +23,7 @@ logging.info('HOMEr service started')
 
 def endprog():
     logging.info('HOMEr service stopping')
+
 
 bottleApp = bottle.default_app()
 bottleApp.merge(RESTInterface.RESTApp)

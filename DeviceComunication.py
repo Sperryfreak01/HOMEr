@@ -126,8 +126,6 @@ def getHueBrightness(device_id):
 
 class MyQ(object):
 
-
-
     def __init__(self):
         self.MYQ_API = HomerHelper.getSettingValue('MyQ_API_URL')
         self.MyQ_App_ID = HomerHelper.getSettingValue('MyQ_App_ID')
