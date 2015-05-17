@@ -13,6 +13,9 @@ from gevent import Greenlet
 import urlparse
 import requests
 import json
+from Scheduler import schedule, KillJob, GetJob
+import random
+
 
 
 logger = logging.getLogger(__name__)
@@ -73,46 +76,59 @@ def sendDeviceBrightness(device_id, device_type, brightness):
             #raise SparkError(spark_response)
             print "error"
 
-
-
-class SparkError(Exception): pass
-
-
 def sendDeviceColor(device_id, color_hex, lighting_mode):
-    color_rgb = HomerHelper.hex2rgb(color_hex)
-
-    payload = {
-        'access_token' : spark_token,
-        'args' : color_rgb
-        }
-    print payload
     if lighting_mode == '0':  # fade mode
-        device_path = "devices/" + device_id + "/fade"
-        url = urlparse.urljoin(SPARK_API, device_path)
-        sendSparkCommand(url, payload)
+        if GetJob('SparkRandom' is not None):
+                killJob('SparkRandom')
+        subject = 'fade'
+        color = color_hex
+        schedule(ParticlePublish, args=(subject, color))
+
     elif lighting_mode == '1':  # Solid color mode
-        device_path = "devices/" + device_id + "/hold"
-        url = urlparse.urljoin(SPARK_API, device_path)
-        sendSparkCommand(url, payload)
+        if GetJob('SparkRandom' is not None):
+                killJob('SparkRandom')
+        subject = 'hold'
+        color = color_hex
+        schedule(ParticlePublish, args=(subject, color))
+
     elif lighting_mode == '2':    # Alarm Mode
-        device_path = "devices/" + device_id + "/alarm"
-        url = urlparse.urljoin(SPARK_API, device_path)  # build the URL to communicate with the Spark
-        sendSparkCommand(url, payload)
+        if GetJob('SparkRandom' is not None):
+                killJob('SparkRandom')
+        subject = 'alert'
+        color = color_hex
+        schedule(ParticlePublish, args=(subject, color))
+
+    elif lighting_mode == '3':    # Constant Random Mode
+        schedule(RGBgen, trigger='interval', seconds=180, id="SparkRandom")
     else:
         print 'no match'
 
-def sendSparkCommand(url, payload):
-    try:
-        data = urllib.urlencode(payload)  # build the POST command to send to the Spark
-        req = urllib2.Request(url, data)  # send request to Spark
-        response = urllib2.urlopen(req)
-        spark_response = response.read()
-        d = json.loads(spark_response)
-        if d['return_value'] is not 1:    # Spark returns 1 for success and 0 for failure
-            raise SparkError(spark_response)
+def RGBgen():
+    red = random.randint(0, 8191)
+    green = random.randint(0, 8191)
+    blue = random.randint(0, 8191)
 
-    except urllib2.HTTPError as e:
-        raise SparkError(e)
+    RGB = str(red) + str(green) + str(blue) + str(0)
+    subject = 'fade'
+    print RGB
+    ParticlePublish(subject, RGB)
+
+def ParticlePublish(subject, msgdata):
+    payload = {
+        'access_token': spark_token,
+        'name': subject,
+        'data': msgdata,
+        'private': 'false',
+        'ttl': '60',
+        }
+    logger.debug("Particle publish: %s" % str(payload))
+
+    r = requests.post(SPARK_API, data=payload)
+    print r.text
+
+
+def ParticleSubscribe():
+    pass
 
 def getHueBrightness(device_id):
     light_disabled = b.get_light(int(device_id), 'on')

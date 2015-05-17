@@ -9,7 +9,7 @@ import logging.handlers
 import bottle
 import WebInterface
 import Polling
-import Scheduler
+from Scheduler import schedule, KillScheduler
 import HomerHelper
 from gevent import monkey,sleep,joinall,spawn
 
@@ -22,6 +22,7 @@ logging.handlers.TimedRotatingFileHandler(filename='/var/log/HOMEr.log', when='m
 logging.info('HOMEr service started')
 
 def endprog():
+    KillScheduler()
     logging.info('HOMEr service stopping')
 
 
@@ -30,6 +31,5 @@ bottleApp.merge(RESTInterface.RESTApp)
 bottleApp.merge(WebInterface.WebApp)
 
 ########################################################################
-#gevent.spawn(Polling.HuePoll())
 Polling.PollingStart()
 bottleApp.run(reloader=True, host='0.0.0.0', port=8081, debug=True, server='gevent')

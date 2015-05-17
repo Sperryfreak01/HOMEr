@@ -15,15 +15,26 @@ jobstores = {
     'default': MemoryJobStore
 }
 executors = {
-    'default': ThreadPoolExecutor(20)
+    'default': ThreadPoolExecutor(40)
 }
 job_defaults = {
-    'coalesce': False,
+    'misfire_grace_time': None,
+    'coalesce': True,
     'max_instances': 3
 }
-scheduler = GeventScheduler(executors=self.executors, job_defaults=self.job_defaults, timezone=self.timezone)
+scheduler = GeventScheduler(executors=executors, job_defaults=job_defaults, timezone=timezone)
 scheduler.start()
 
-def schedule(*args,**kwargs):
+def schedule(*args, **kwargs):
     job = scheduler.add_job(*args, **kwargs)
+    return job
+
+def KillJob(*args, **kwargs):
+    scheduler.remove_job(*args, **kwargs)
+
+def KillScheduler():
+    scheduler.shutdown()
+
+def GetJob(*args, **kwargs):
+    job = scheduler.get_job(*args, **kwargs)
     return job

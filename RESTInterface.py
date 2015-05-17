@@ -12,7 +12,8 @@ import HomerHelper
 import Notifications
 import DeviceComunication
 import logging
-import gevent
+from Scheduler import schedule
+
 
 RESTApp = bottle.Bottle()
 
@@ -506,8 +507,7 @@ def setColor():
         else:
             bottle.abort(400, "Device does not have mode attribute")
 
-        t = threading.Thread(target=DeviceComunication.sendDeviceColor, args=(device_id, device_color, device_state))
-        t.start()
+        DeviceComunication.sendDeviceColor(device_id, device_color, device_state)
         history_event = "set color to: " + device_color + "set mode to " + device_state
         HomerHelper.insert_history(device_name, device_id, history_event)
         return "OK"
